@@ -36,7 +36,7 @@
         <nav class="relative max-w-7xl w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
             <div class="flex items-center justify-between">
                 <a class="flex-none text-xl font-semibold dark:text-white" href="/" aria-label="<?= $brand ?>">
-                    <i class='fa-solid fa-tooth fa-xl text-primary-600 dark:text-primary-500'></i>
+                    <i class='fa-solid fa-tooth fa-xl fa-flip text-primary-600 dark:text-primary-500'></i>
                     <?= $brand ?>
                 </a>
                 <div class="sm:hidden">
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div id="navbar-collapse" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
-                <div data-hs-scrollspy="#scrollspy" class="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:pl-7 font-medium text-sm [--scrollspy-offset:70]">
+                <div data-hs-scrollspy="#scrollspy" class="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:pl-7 font-medium text-sm">
                     <a class=" text-gray-700 leading-6 hover:text-gray-500 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500 hs-scrollspy-active:text-primary-600 dark:hs-scrollspy-active:text-primary-400" href="#about">О нас</a>
                     <a class=" text-gray-700 leading-6 hover:text-gray-500 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500 hs-scrollspy-active:text-primary-600 dark:hs-scrollspy-active:text-primary-400" href="#advantages">Преимущества</a>
                     <a class=" text-gray-700 leading-6 hover:text-gray-500 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500 hs-scrollspy-active:text-primary-600 dark:hs-scrollspy-active:text-primary-400" href="#services">Услуги</a>
@@ -75,7 +75,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-5 text-center">
                 <div class='text-left'>
                     <a class="flex-none text-xl font-semibold text-white" href="#" aria-label="<?= $brand ?>">
-                        <i class='fa-solid fa-tooth fa-xl text-primary-600 dark:text-primary-500'></i>
+                        <i class='fa-solid fa-tooth fa-xl fa-flip text-primary-600 dark:text-primary-500'></i>
                         <?= $brand ?>
                     </a>
                 </div>
@@ -385,7 +385,6 @@
     <script src='/resources/libs/jquery/fancybox/fancybox.min.js'></script>
     <script src='/resources/libs/preline/preline.js'></script>
     <script src='/resources/js/common.js'></script>
-    <script src='/resources/js/map.js'></script>
 </body>
 
 </html>
