@@ -1,20 +1,3 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/global.inc.php';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    $result = $userTools->login($email, $password);
-
-    if ($result === true) {
-        header('Location: /dashboard');
-        exit;
-    } else {
-        echo $result;
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang='ru'>
 
@@ -191,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </p>
                     </div>
                     <div class="mt-5">
-                        <form class="grid gap-y-4">
+                        <form class="grid gap-y-4" id='login-form'>
                             <div>
                                 <label for="email" class="block text-sm font-medium mb-2 dark:text-white">Почта</label>
                                 <div class="relative">
@@ -204,12 +187,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div>
                                 <label for="password" class="block text-sm font-medium mb-2 dark:text-white">Пароль</label>
                                 <div class="relative">
-                                    <input type="text" id="password" name="password" class="py-3 px-4 pl-11 block w-full border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="••••••••••••" maxlength="32" required>
+                                    <input type="password" id="password" name="password" class="py-3 px-4 pl-11 block w-full border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="••••••••••••" maxlength="32" required>
                                     <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none z-20 pl-4">
                                         <i class='fa-solid fa-envelope h-3.5 w-3.5 text-gray-400'></i>
                                     </div>
                                 </div>
                             </div>
+                            <p class='hidden text-sm text-red-600' id='error-message'></p>
+                            <p class='hidden text-sm text-green-600' id='success-message'></p>
                             <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Войти</button>
                         </form>
                     </div>

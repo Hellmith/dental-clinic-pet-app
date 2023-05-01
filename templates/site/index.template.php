@@ -339,13 +339,13 @@
                     <div class="relative">
                         <div>
                             <div id="tabs-with-card-1" role="tabpanel" aria-labelledby="tabs-with-card-item-1">
-                                <img class="shadow-xl shadow-gray-200 rounded-xl w-full dark:shadow-gray-900/[.2]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-FffHzT5oP0IlAOWRt-H8OjTSANMIeXAyiQ&usqp=CAU" alt="Image Description">
+                                <img class="shadow-xl shadow-gray-200 rounded-xl w-full dark:shadow-gray-900/[.2]" src="/resources/images/cert_1.png" alt="Image Description">
                             </div>
                             <div id="tabs-with-card-2" class="hidden" role="tabpanel" aria-labelledby="tabs-with-card-item-2">
-                                <img class="shadow-xl shadow-gray-200 rounded-xl w-full dark:shadow-gray-900/[.2]" src="https://cdn.iportal.ru/news/2021/99/preview/ed12add4cdc348ee217de3681ea2ed086fcee3c1_2560_1707_c.jpg" alt="Image Description">
+                                <img class="shadow-xl shadow-gray-200 rounded-xl w-full dark:shadow-gray-900/[.2]" src="/resources/images/cert_2.png" alt="Image Description">
                             </div>
                             <div id="tabs-with-card-3" class="hidden" role="tabpanel" aria-labelledby="tabs-with-card-item-3">
-                                <img class="shadow-xl shadow-gray-200 rounded-xl w-full h-auto dark:shadow-gray-900/[.2]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk_pnk1lb_qyY9xV9ctRCyHNnIgTUpd5oaIQ&usqp=CAU" alt="Image Description">
+                                <img class="shadow-xl shadow-gray-200 rounded-xl w-full h-auto dark:shadow-gray-900/[.2]" src="/resources/images/cert_3.png" alt="Image Description">
                             </div>
                         </div>
                         <div class="hidden absolute top-0 right-0 translate-x-20 md:block lg:translate-x-20">

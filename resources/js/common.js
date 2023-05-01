@@ -78,12 +78,26 @@ $(document).ready(function () {
 	})
 
 	/**
-	 * ВАЛИДАЦИЯ
+	 * АВТОРИЗАЦИЯ
 	 */
-	$('#register').on('submit', function (event) {
-		if (validateForm()) {
-			// если есть ошибки возвращает true
-			event.preventDefault()
-		}
+	$('#login-form').submit(function (e) {
+		e.preventDefault()
+		$.ajax({
+			type: 'POST',
+			url: '/services/login.service.php',
+			data: $('#login-form').serialize(),
+			success: function (data) {
+				if (data === 'success') {
+					$('#error-message').remove()
+					$('#success-message').removeClass('hidden').html('Успешная авторизация')
+					setTimeout(() => {
+						window.location.href = '/dashboard'
+					}, 1000)
+				} else $('#error-message').removeClass('hidden').html(data)
+			},
+			error: function (error) {
+				console.error('Возникла ошибка: ' + error)
+			}
+		})
 	})
 })

@@ -12,25 +12,26 @@ class UserTools
     public function login($email, $password)
     {
         $message = '';
+
         $userRow = $this->connection->select('patients', "email = '$email'", true);
         if (!empty($userRow)) {
             if (password_verify($password, $userRow['password'])) {
                 $_SESSION['USER'] = $userRow;
-                return true;
+                $message = 'Успешная авторизация!';
             } else {
-                $message = 'Неверный пароль';
+                $message = 'Пароль неверный, пожалуйста проверьте введенные данные.';
             }
         } else {
             $staffRow = $this->connection->select('staffs as s', "s.email = '$email'", true, 'left join jobs j on job_id = j.id', 's.*, j.job_name');
             if (!empty($staffRow)) {
                 if (password_verify($password, $staffRow['password'])) {
                     $_SESSION['STAFF'] = $staffRow;
-                    return true;
+                    $message = 'Успешная авторизация!';
                 } else {
-                    $message = 'Неверный пароль';
+                    $message = 'Пароль неверный, пожалуйста проверьте введенные данные.';
                 }
             } else {
-                $message = 'Неверная почта';
+                $message = 'Почта неверна, пожалуйста проверьте введенные данные.';
             }
         }
         return $message;
