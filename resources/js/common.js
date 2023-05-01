@@ -76,4 +76,14 @@ $(document).ready(function () {
 			}
 		})
 	})
+
+	/**
+	 * ВАЛИДАЦИЯ
+	 */
+	$('#register').on('submit', function (event) {
+		if (validateForm()) {
+			// если есть ошибки возвращает true
+			event.preventDefault()
+		}
+	})
 })
