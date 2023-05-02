@@ -148,7 +148,7 @@
                     Пользуясь сайтом вы соглашаетесь с <button class="inline-flex items-center gap-x-1.5 text-primary-600 decoration-2 hover:underline font-medium" type='button' data-hs-overlay="#modal-cookie">политикой Cookie</button>
                 </p>
                 <div>
-                    <button type="button" class="inline-flex text-gray-500 focus:outline-none dark:hover:bg-gray-600 dark:text-gray-400" data-hs-remove-element="#cookie">
+                    <button id='cookie-accept' type="button" class="inline-flex text-gray-500 focus:outline-none dark:hover:bg-gray-600 dark:text-gray-400" data-hs-remove-element="#cookie">
                         <span class="sr-only">Dismiss</span>
                         <i class='fa-solid fa-xmark w-4'></i>
                     </button>
@@ -217,7 +217,7 @@
                         </p>
                     </div>
                     <div class="mt-5">
-                        <form class="grid grid-cols-2 gap-4">
+                        <form class="grid grid-cols-2 gap-4" id='registration-form'>
                             <div class='col-span-2'>
                                 <label for="surname" class="block text-sm mb-2 dark:text-white">Фамилия</label>
                                 <div class="relative">
@@ -260,6 +260,8 @@
                                     <input type="password" id="passwordRepeat" name="passwordRepeat" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400" minlength="8" maxlength="32" placeholder="Повторите пароль" required>
                                 </div>
                             </div>
+                            <p class='hidden text-sm text-red-600' id='error-message2'></p>
+                            <p class='hidden text-sm text-green-600' id='success-message2'></p>
                             <button type="submit" class="py-3 col-span-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
                                 Зарегистрироваться
                             </button>

@@ -373,8 +373,8 @@
                 </h1>
             </div>
         </div>
-        <div class="mt-12 w-full h-96 shadow-xl">
-            <div id="map-page" class='h-96 w-full'></div>
+        <div class="mt-12 w-full shadow-xl">
+            <div id="map-page" class='w-full h-96   max-w-7xl'></div>
         </div>
         <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 items-center gap-4 lg:gap-8">
             <a class="flex flex-col h-full text-center rounded-md p-4 sm:p-6 dark:hover:bg-white/[.05]" href="tel:+7 999 999 99-99">

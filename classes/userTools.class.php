@@ -39,13 +39,14 @@ class UserTools
 
     public function register($name, $surname, $patronymic, $phone, $email, $password)
     {
+        $message = '';
         $userRow = $this->connection->select('patients', "email = '$email'", true);
         if ($userRow) {
-            return 'Эта почта уже используется';
+            $message = 'Эта почта уже используется';
         } else {
             $userRow = $this->connection->select('patients', "phone = '$phone'", true);
             if ($userRow) {
-                return 'Этот номер уже используется';
+                $message = 'Этот номер уже используется';
             } else {
                 $password = password_hash($password, PASSWORD_BCRYPT);
                 $data = [
@@ -59,12 +60,13 @@ class UserTools
                 $id = $this->connection->insert($data, 'patients');
                 if ($id) {
                     $_SESSION['USER'] = $this->connection->select('patients', "id = '$id'", true);
-                    return true;
+                    $message = 'Успешная регистрация!';
                 } else {
-                    return false;
+                    $message = 'Ошибка регистрации! Данный пользователь уже зарегистрирован.';
                 }
             }
         }
+        return $message;
     }
 
     public function logout()

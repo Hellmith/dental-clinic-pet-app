@@ -78,6 +78,18 @@ $(document).ready(function () {
 	})
 
 	/**
+	 * КУКИ ПОДТВЕРЖДЕНИЕ
+	 */
+	$('#cookie-accept').click(function (e) {
+		e.preventDefault()
+		window.localStorage.setItem('ACCEPT', true)
+	})
+
+	if (window.localStorage.getItem('ACCEPT')) {
+		$('#cookie').remove()
+	}
+
+	/**
 	 * АВТОРИЗАЦИЯ
 	 */
 	$('#login-form').submit(function (e) {
@@ -94,6 +106,31 @@ $(document).ready(function () {
 						window.location.href = '/dashboard'
 					}, 1000)
 				} else $('#error-message').removeClass('hidden').html(data)
+			},
+			error: function (error) {
+				console.error('Возникла ошибка: ' + error)
+			}
+		})
+	})
+
+	/**
+	 * РЕГИСТРАЦИЯ
+	 */
+	$('#registration-form').submit(function (e) {
+		e.preventDefault()
+		$.ajax({
+			type: 'POST',
+			url: '/services/registration.service.php',
+			data: $('#registration-form').serialize(),
+			success: function (data) {
+				console.log(data)
+				if (data === 'success') {
+					$('#error-message2').remove()
+					$('#success-message2').removeClass('hidden').html('Успешная регистрация')
+					setTimeout(() => {
+						window.location.href = '/dashboard'
+					}, 1000)
+				} else $('#error-message2').removeClass('hidden').html(data)
 			},
 			error: function (error) {
 				console.error('Возникла ошибка: ' + error)
