@@ -1,1 +1,1 @@
-<?php require_once 'config.php'; require_once $root . '/views/index.view.php' ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/index.view.php';

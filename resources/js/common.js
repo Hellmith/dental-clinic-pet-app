@@ -123,7 +123,6 @@ $(document).ready(function () {
 			url: '/services/registration.service.php',
 			data: $('#registration-form').serialize(),
 			success: function (data) {
-				console.log(data)
 				if (data === 'success') {
 					$('#error-message2').remove()
 					$('#success-message2').removeClass('hidden').html('Успешная регистрация')
@@ -131,6 +130,28 @@ $(document).ready(function () {
 						window.location.href = '/dashboard'
 					}, 1000)
 				} else $('#error-message2').removeClass('hidden').html(data)
+			},
+			error: function (error) {
+				console.error('Возникла ошибка: ' + error)
+			}
+		})
+	})
+
+	/**
+	 * ВЫХОД ИЗ АККАУНТА
+	 */
+	$('#logout-button').click(function () {
+		$.ajax({
+			type: 'GET',
+			url: '/services/logout.service.php',
+			data: { action: 'logout' },
+			success: function (data) {
+				console.log(data)
+				if (data === 'success') {
+					window.location.href = '/'
+				} else {
+					alert('error')
+				}
 			},
 			error: function (error) {
 				console.error('Возникла ошибка: ' + error)

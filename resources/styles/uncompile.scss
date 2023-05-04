@@ -4,7 +4,11 @@
 
 @layer base {
 	::-webkit-scrollbar {
-		@apply w-2;
+		@apply w-2 h-2;
+	}
+
+	::-webkit-scrollbar-track-piece {
+		@apply h-2 w-2;
 	}
 
 	::-webkit-scrollbar-track {

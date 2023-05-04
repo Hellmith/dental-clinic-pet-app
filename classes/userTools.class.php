@@ -71,13 +71,9 @@ class UserTools
 
     public function logout()
     {
-        if (isset($_SESSION['USER']) || isset($_SESSION['STAFF'])) {
-            unset($_SESSION['USER']);
-            unset($_SESSION['STAFF']);
-            session_destroy();
-            return true;
-        } else {
-            return false;
-        }
+        unset($_SESSION['USER']);
+        unset($_SESSION['STAFF']);
+        session_destroy();
+        return 'success';
     }
 }
