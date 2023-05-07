@@ -52,7 +52,7 @@
                         </p>
                     </div>
                     <div class="mt-2 py-2 first:pt-0 last:pb-0">
-                        <button class="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id='logout-button'>
+                        <button class="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" id='logout-button' type='button'>
                             <i class='flex-none fa-solid fa-sign-out'></i>
                             Выход
                         </button>
@@ -83,11 +83,44 @@
 </body>
 
 <!-- 
+    КАНВАСЫ
+ -->
+<div id="profile-edit-canvas" class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full fixed top-0 left-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-r dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
+    <div class="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
+        <h3 class="font-bold text-gray-800 dark:text-white">
+            Редактирование профиля
+        </h3>
+        <button type="button" class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white text-sm dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#profile-edit-canvas">
+            <span class="sr-only">Close modal</span>
+            <i class='fa-solid fa-xmark'></i>
+        </button>
+    </div>
+    <div class="p-4 h-full">
+        <form class='flex flex-col h-full justify-between'>
+            <div class='space-y-3'>
+                <div>
+                    <label for="email" class="block text-sm font-medium mb-2 dark:text-white">Почта</label>
+                    <input type="email" id="email" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" value="<?= $email ?>">
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium mb-2 dark:text-white">Телефон</label>
+                    <input type="tel" id="phone" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" value="<?= $tel ?>">
+                </div>
+            </div>
+            <button>Обновить данные</button>
+        </form>
+    </div>
+</div>
+
+<!-- 
         СКРИПТЫ
     -->
-<script src='/resources/libs/jquery/jquery.min.js'></script>
+<script src=' /resources/libs/jquery/jquery.min.js'>
+</script>
 <script src='/resources/libs/jquery/mask/mask.min.js'></script>
 <script src='/resources/libs/preline/preline.js'></script>
+<script src='/resources/js/common.js'></script>
+<script src='/resources/js/app.js'></script>
 </body>
 
 </html>

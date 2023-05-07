@@ -51,6 +51,7 @@
                     <a class=" text-gray-700 leading-6 hover:text-gray-500 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500 hs-scrollspy-active:text-primary-600 dark:hs-scrollspy-active:text-primary-400" href="#about">О нас</a>
                     <a class=" text-gray-700 leading-6 hover:text-gray-500 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500 hs-scrollspy-active:text-primary-600 dark:hs-scrollspy-active:text-primary-400" href="#advantages">Преимущества</a>
                     <a class=" text-gray-700 leading-6 hover:text-gray-500 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500 hs-scrollspy-active:text-primary-600 dark:hs-scrollspy-active:text-primary-400" href="#services">Услуги</a>
+                    <a class=" text-gray-700 leading-6 hover:text-gray-500 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500 hs-scrollspy-active:text-primary-600 dark:hs-scrollspy-active:text-primary-400" href="#doctors">Врачи</a>
                     <a class=" text-gray-700 leading-6 hover:text-gray-500 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500 hs-scrollspy-active:text-primary-600 dark:hs-scrollspy-active:text-primary-400" href="#certificates">Сертификаты</a>
                     <a class=" text-gray-700 leading-6 hover:text-gray-500 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500 hs-scrollspy-active:text-primary-600 dark:hs-scrollspy-active:text-primary-400" href="#placement">Где нас найти?</a>
 
@@ -249,15 +250,15 @@
                                 </div>
                             </div>
                             <div>
-                                <label for="password" class="block text-sm mb-2 dark:text-white">Пароль</label>
+                                <label for="password1" class="block text-sm mb-2 dark:text-white">Пароль</label>
                                 <div class="relative">
-                                    <input type="password" id="password" name="password" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400" placeholder="Введите пароль" minlength="8" maxlength="32" required>
+                                    <input type="password" id="password1" name="password1" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400" placeholder="Введите пароль" minlength="8" maxlength="32" required>
                                 </div>
                             </div>
                             <div>
-                                <label for="passwordRepeat" class="block text-sm mb-2 dark:text-white">Подтверждение пароля</label>
+                                <label for="password2" class="block text-sm mb-2 dark:text-white">Подтверждение пароля</label>
                                 <div class="relative">
-                                    <input type="password" id="passwordRepeat" name="passwordRepeat" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400" minlength="8" maxlength="32" placeholder="Повторите пароль" required>
+                                    <input type="password" id="password2" name="password2" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400" minlength="8" maxlength="32" placeholder="Повторите пароль" required>
                                 </div>
                             </div>
                             <p class='hidden text-sm text-red-600' id='error-message2'></p>

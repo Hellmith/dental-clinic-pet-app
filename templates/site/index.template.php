@@ -163,7 +163,7 @@
                 <h2 class="text-3xl text-gray-800 font-bold lg:text-4xl dark:text-white">
                     Услуги компании
                 </h2>
-                <button class="mt-5 inline-flex items-center gap-x-2 font-medium text-primary-600 dark:text-primary-500" type='button' data-hs-overlay="#modal-login">
+                <button class="mt-5 inline-flex items-center gap-x-2 font-medium text-primary-600 dark:text-primary-500" type='button' data-hs-overlay="#modal-register">
                     Запишитесь на прием уже сейчас
                     <i class='fa-solid fa-long-arrow-right'></i>
                 </button>
@@ -290,6 +290,107 @@
         </div>
     </div>
 </section>
+<section class='h-screen text-gray-800 w-full flex items-center justify-center' id='doctors'>
+    <div class="max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        <div class="grid gap-12">
+            <div class="lg:w-3/4">
+                <h2 class="text-3xl text-gray-800 font-bold lg:text-4xl dark:text-white">
+                    Наши врачи
+                </h2>
+                <button class="mt-5 inline-flex items-center gap-x-2 font-medium text-primary-600 dark:text-primary-500" type='button' data-hs-overlay="#modal-register">
+                    Нашли нужного врача? Запишитесь на прием
+                    <i class='fa-solid fa-long-arrow-right'></i>
+                </button>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-6 md:gap-10">
+                <div class="w-full h-full bg-white gap-2 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <img src='/resources/images/cert_1.png' width="128" />
+                    <div class='flex flex-col justify-between'>
+                        <div class="flex items-center gap-x-4 mb-3">
+                            <div class="flex-shrink-0">
+                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Фамилия Имя</h3>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+                        <p class="text-gray-600 flex items-center justify-between dark:text-gray-400">
+                            <span>Специальность</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full h-full bg-white gap-2 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <img src='/resources/images/cert_1.png' width="128" />
+                    <div class='flex flex-col justify-between'>
+                        <div class="flex items-center gap-x-4 mb-3">
+                            <div class="flex-shrink-0">
+                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Фамилия Имя</h3>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+                        <p class="text-gray-600 flex items-center justify-between dark:text-gray-400">
+                            <span>Специальность</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full h-full bg-white gap-2 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <img src='/resources/images/cert_1.png' width="128" />
+                    <div class='flex flex-col justify-between'>
+                        <div class="flex items-center gap-x-4 mb-3">
+                            <div class="flex-shrink-0">
+                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Фамилия Имя</h3>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+                        <p class="text-gray-600 flex items-center justify-between dark:text-gray-400">
+                            <span>Специальность</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full h-full bg-white gap-2 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <img src='/resources/images/cert_1.png' width="128" />
+                    <div class='flex flex-col justify-between'>
+                        <div class="flex items-center gap-x-4 mb-3">
+                            <div class="flex-shrink-0">
+                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Фамилия Имя</h3>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+                        <p class="text-gray-600 flex items-center justify-between dark:text-gray-400">
+                            <span>Специальность</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full h-full bg-white gap-2 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <img src='/resources/images/cert_1.png' width="128" />
+                    <div class='flex flex-col justify-between'>
+                        <div class="flex items-center gap-x-4 mb-3">
+                            <div class="flex-shrink-0">
+                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Фамилия Имя</h3>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+                        <p class="text-gray-600 flex items-center justify-between dark:text-gray-400">
+                            <span>Специальность</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full h-full bg-white gap-2 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <img src='/resources/images/cert_1.png' width="128" />
+                    <div class='flex flex-col justify-between'>
+                        <div class="flex items-center gap-x-4 mb-3">
+                            <div class="flex-shrink-0">
+                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Фамилия Имя</h3>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis </p>
+                        <p class="text-gray-600 flex items-center justify-between dark:text-gray-400">
+                            <span>Специальность</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <section class='h-screen text-gray-800 w-full flex items-center justify-center' id='certificates'>
     <div class="max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div class="relative p-6 md:p-16">
@@ -365,7 +466,7 @@
     </div>
 </section>
 <section class='bg-[url(/resources/images/bg_advantages.svg)] bg-min bg-right-bottom bg-no-repeat h-screen text-gray-800 w-full flex items-center justify-center' id='placement'>
-    <div class="max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <div class="max-w-7xl w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div class="max-w-xl mx-auto">
             <div class="text-center">
                 <h1 class="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">
@@ -374,7 +475,7 @@
             </div>
         </div>
         <div class="mt-12 w-full shadow-xl">
-            <div id="map-page" class='w-full h-96   max-w-7xl'></div>
+            <div id="map-page" class='w-full h-96 max-w-7xl'></div>
         </div>
         <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 items-center gap-4 lg:gap-8">
             <a class="flex flex-col h-full text-center rounded-md p-4 sm:p-6 dark:hover:bg-white/[.05]" href="tel:+7 999 999 99-99">
@@ -399,9 +500,61 @@
                 <div class="grow">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Адрес</h3>
                     <p class="mt-1 text-gray-500">Адрес</p>
+                    ВЫБОР ФИЛИАЛА
                 </div>
             </a>
         </div>
     </div>
-    <!-- End Contact Us -->
+</section>
+<section class='text-gray-800 w-full flex items-center justify-center'>
+    <div class="max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="flex flex-col bg-white border justify-between  border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700">
+                <div class="flex-auto p-4 md:p-6">
+                    <p class="mt-3 sm:mt-6 text-base text-gray-800 md:text-xl dark:text-white"><em>
+                            " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
+                        </em></p>
+                </div>
+                <div class="p-4 rounded-b-xl md:px-6">
+                    <h3 class="text-sm font-semibold text-gray-800 sm:text-base dark:text-gray-200">
+                        Фамилия Имя
+                    </h3>
+                    <p class="text-sm text-gray-500">
+                        Кем является
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex flex-col bg-white border justify-between  border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700">
+                <div class="flex-auto p-4 md:p-6">
+                    <p class="mt-3 sm:mt-6 text-base text-gray-800 md:text-xl dark:text-white"><em>
+                            " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
+                        </em></p>
+                </div>
+                <div class="p-4 rounded-b-xl md:px-6">
+                    <h3 class="text-sm font-semibold text-gray-800 sm:text-base dark:text-gray-200">
+                        Фамилия Имя
+                    </h3>
+                    <p class="text-sm text-gray-500">
+                        Кем является
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col bg-white border justify-between  border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700">
+                <div class="flex-auto p-4 md:p-6">
+                    <p class="mt-3 sm:mt-6 text-base text-gray-800 md:text-xl dark:text-white"><em>
+                            " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
+                        </em></p>
+                </div>
+                <div class="p-4 rounded-b-xl md:px-6">
+                    <h3 class="text-sm font-semibold text-gray-800 sm:text-base dark:text-gray-200">
+                        Фамилия Имя
+                    </h3>
+                    <p class="text-sm text-gray-500">
+                        Кем является
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

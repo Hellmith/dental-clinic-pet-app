@@ -136,26 +136,4 @@ $(document).ready(function () {
 			}
 		})
 	})
-
-	/**
-	 * ВЫХОД ИЗ АККАУНТА
-	 */
-	$('#logout-button').click(function () {
-		$.ajax({
-			type: 'GET',
-			url: '/services/logout.service.php',
-			data: { action: 'logout' },
-			success: function (data) {
-				console.log(data)
-				if (data === 'success') {
-					window.location.href = '/'
-				} else {
-					alert('error')
-				}
-			},
-			error: function (error) {
-				console.error('Возникла ошибка: ' + error)
-			}
-		})
-	})
 })
