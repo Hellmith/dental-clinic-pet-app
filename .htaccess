@@ -1,3 +1,4 @@
 RewriteEngine On
 
 RewriteRule ^dashboard$ /views/dashboard.view.php [L]
+RewriteRule ^dashboard/bookings$ /views/user/bookings.view.php [L]
