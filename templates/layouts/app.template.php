@@ -76,7 +76,7 @@
                 </div>
             </div>
         </nav>
-        <div class="container mx-auto py-10 px-4 sm:px-6 lg:px-8 min-h-[75rem]">
+        <div class="container mx-auto py-10 px-4 sm:px-6 lg:px-8 ">
             <?= $content ?>
         </div>
     </main>
