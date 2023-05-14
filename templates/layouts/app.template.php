@@ -65,7 +65,7 @@
         <nav class="sticky -top-px bg-white text-sm font-medium text-black ring-1 ring-gray-900 ring-opacity-5 border-t shadow-sm shadow-gray-100 pt-6 md:pb-6 -mt-px dark:bg-slate-900 dark:border-gray-800 dark:shadow-slate-700/[.7]" aria-label="Jump links">
             <div class="container snap-x w-full flex items-center overflow-x-auto scrollbar-x px-4 sm:px-6 lg:px-8 pb-4 md:pb-0 mx-auto dark:scrollbar-x">
                 <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last-pr-0">
-                    <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500" href="/">
+                    <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500" href="/dashboard">
                         Профиль
                     </a>
                 </div>
@@ -85,30 +85,99 @@
 <!-- 
     КАНВАСЫ
  -->
-<div id="profile-edit-canvas" class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full fixed top-0 left-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-r dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
-    <div class="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
+<div id="doctors-appointment-canvas" class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full fixed top-0 left-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-r dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
+    <div class="flex justify-between items-center h-[71px] py-3 px-4 border-b dark:border-gray-700">
         <h3 class="font-bold text-gray-800 dark:text-white">
-            Редактирование профиля
+            Запись к врачу
         </h3>
-        <button type="button" class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white text-sm dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#profile-edit-canvas">
+        <button type="button" class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white text-sm dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#doctors-appointment-canvas">
             <span class="sr-only">Close modal</span>
             <i class='fa-solid fa-xmark'></i>
         </button>
     </div>
     <div class="p-4 h-full">
-        <form class='flex flex-col h-full justify-between'>
-            <div class='space-y-3'>
-                <div>
-                    <label for="email" class="block text-sm font-medium mb-2 dark:text-white">Почта</label>
-                    <input type="email" id="email" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" value="<?= $email ?>">
+        <form class='flex flex-col h-[calc(100vh_-_100px)] justify-between'>
+            <div class="flex flex-col">
+                <div class="mb-2">
+                    <label for="filial" class="block text-sm font-medium dark:text-white">Филиал</label>
+                    <select id="filial" name="filial" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                        <option selected>Выберите из списка</option>
+                    </select>
                 </div>
-                <div>
-                    <label for="phone" class="block text-sm font-medium mb-2 dark:text-white">Телефон</label>
-                    <input type="tel" id="phone" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" value="<?= $tel ?>">
+                <div class="mb-2">
+                    <label for="service" class="block text-sm font-medium dark:text-white">Услуга</label>
+                    <select id="service" name="service" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                        <option selected>Выберите из списка</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <label for="doctor" class="block text-sm font-medium dark:text-white">Врач</label>
+                    <select id="doctor" name="doctor" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                        <option selected>Выберите из списка</option>
+                    </select>
+                </div>
+                <div class="mb-2 grid grid-cols-2 gap-2">
+                    <div>
+                        <label for="date" class="block text-sm font-medium dark:text-white">Дата</label>
+                        <input type="date" id="date" name="date" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                    </div>
+                    <div>
+                        <label for="time" class="block text-sm font-medium dark:text-white">Время</label>
+                        <input type="time" id="time" name="time" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold text-primary-500 hover:text-primary-700 focus:outline-none focus:ring-2 ring-offset-white focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm" data-hs-overlay="#modal-set-city">
+                        Изменить город
+                    </button>
                 </div>
             </div>
-            <button>Обновить данные</button>
+            <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
+                Записаться
+            </button>
         </form>
+    </div>
+</div>
+
+<!-- 
+        МОДАЛЬНЫЕ ОКНА
+     -->
+<div id="modal-set-city" class="hs-overlay hidden w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto">
+    <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-4 sm:p-7">
+                <div class="text-center">
+                    <h2 class="block text-2xl font-bold text-gray-800 dark:text-gray-200">Выбор города</h2>
+                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                        Уже выбрали?
+                        <button class="text-primary-600 decoration-2 hover:underline font-medium" type='button' data-hs-overlay="#doctors-appointment-canvas">
+                            Запишитесь на прием
+                        </button>
+                    </p>
+                </div>
+                <div class="mt-5">
+                    <form class="grid gap-y-4" id='city-set-form'>
+                        <div>
+                            <label for="region" class="block text-sm font-medium mb-2 dark:text-white">Регион</label>
+                            <div class="relative">
+                                <select id="region" name="region" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                                    <option selected>Выберите из списка</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="city" class="block text-sm font-medium mb-2 dark:text-white">Город</label>
+                            <div class="relative">
+                                <select id="city" name="city" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled>
+                                    <option selected>Выберите регион</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Выбрать</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

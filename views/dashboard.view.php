@@ -50,7 +50,7 @@ if ($_SESSION['USER']) {
     $verified = $_SESSION['STAFF']['verified'];
 }
 
-$thisPage = renderTemplate('../templates/site/dashboard.template.php', ['fullname' => $fullname, 'email' => $email, 'tel' => $tel]);
+$thisPage = renderTemplate('../templates/site/dashboard.template.php', ['fullname' => $fullname]);
 $thisLayout = renderTemplate('../templates/layouts/app.template.php', ['brand' => $brand, 'email' => $email, 'tel' => $tel, 'content' => $thisPage]);
 
 print $thisLayout;

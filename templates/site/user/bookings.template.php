@@ -1,30 +1,3 @@
-<?php
-$conn = mysqli_connect("127.0.0.1", "root", "", "dentistry") or die("Error: " . mysqli_error($conn));
-
-$filter = "WHERE 1=1 and b.phone = '" . $_SESSION['USER']['phone'] . "'";
-
-$default_limit = 10;
-$limit_num = !empty($_GET['limit']) && $_GET['limit'] >= 1 ? $_GET['limit'] : $default_limit;
-$total = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM `bookings` AS b $filter"))[0];
-$pages = ceil($total / $limit_num);
-$page = !empty($_GET['page']) ? $_GET['page'] : 1;
-$page = is_numeric($page) && $page >= 1 ? min([$page, $pages]) : 1;
-$_GET['page'] = $page;
-$kolvo = $limit_num * ($total == 0 ? 1 : $page - 1);
-$limit = "LIMIT $kolvo, $limit_num";
-
-$query =
-    "SELECT b.*, st.staff_name, st.staff_surname, st.staff_patronymic, se.service_title, f.filial_title, f.street_name
-FROM `bookings` AS b
-LEFT JOIN `staffs` AS st ON b.staff_id = st.id
-LEFT JOIN `services` AS se ON b.services_id = se.id
-LEFT JOIN `filials` AS f ON b.filial_id = f.id
-$filter
-ORDER BY `date` ASC, `time` ASC $limit";
-$bookings_result = mysqli_query($conn, $query);
-$bookings = mysqli_num_rows($bookings_result);
-?>
-
 <header class="container">
     <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">Записи</h1>
 </header>
@@ -44,12 +17,12 @@ $bookings = mysqli_num_rows($bookings_result);
                         </div>
                         <div>
                             <div class="inline-flex gap-x-2">
-                                <a class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" href="#">
+                                <Button class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" href type="button" data-hs-overlay="#doctors-appointment-canvas">
+                                    Новая запись
                                     <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M2.63452 7.50001L13.6345 7.5M8.13452 13V2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                                     </svg>
-                                    Добавить
-                                </a>
+                                </Button>
                             </div>
                         </div>
                     </div>
