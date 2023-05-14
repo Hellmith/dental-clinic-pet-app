@@ -19,9 +19,15 @@ class DataTools
         if (isset($_SESSION['CITY'])) {
             $city_id = $_SESSION['CITY']['id'];
         } else {
-            $result = $this->connection->select('filials', "id = {$_SESSION['STAFF']['filial_id']}");
-            $city_id = $result['city_id'];
+            if (isset($_SESSION['STAFF'])) {
+                $result = $this->connection->select('filials', "id = {$_SESSION['STAFF']['filial_id']}");
+                $city_id = $result['city_id'];
+            } else {
+                throw new Exception("SESSION variable 'STAFF' is not defined!");
+            }
         }
+
+        $city_id = $this->connection->escapeString($city_id);
 
         $sql = "SELECT f.*, c.city_title FROM filials AS f LEFT JOIN cities AS c ON f.city_id = c.id WHERE c.id = $city_id";
         $result = $this->connection->query($sql);
