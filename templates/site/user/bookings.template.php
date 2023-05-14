@@ -1,5 +1,3 @@
-<?php setlocale(LC_TIME, 'ru_RU.utf8'); ?>
-
 <header class="container">
     <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">Записи</h1>
 </header>
@@ -74,7 +72,7 @@
                                     </td>
                                     <td class="h-px w-auto whitespace-nowrap">
                                         <div class="px-6 py-2">
-                                            <span class="text-sm text-gray-800 dark:text-gray-200"><?= $booking['staff_surname'] . ' ' . mb_substr($booking['staff_name'], 0, 1) . '. ' . mb_substr($booking['staff_patronymic'], 0, 1) .'.' ?></span>
+                                            <span class="text-sm text-gray-800 dark:text-gray-200"><?= $booking['staff_surname'] . ' ' . mb_substr($booking['staff_name'], 0, 1) . '. ' . mb_substr($booking['staff_patronymic'], 0, 1) . '.' ?></span>
                                         </div>
                                     </td>
                                     <td class="h-px w-auto whitespace-nowrap">
@@ -87,7 +85,9 @@
                                     <td class="h-px w-auto whitespace-nowrap">
                                         <div class="px-6 py-2">
                                             <span class="text-sm text-gray-800 dark:text-gray-200">
-                                                <? echo strftime('%d %B %Y', strtotime($booking['date'])) ?>
+                                                <?
+                                                setlocale(LC_TIME, 'ru_RU.utf8');
+                                                echo strftime('%d %B %Y', strtotime($booking['date'])) ?>
                                             </span>
                                         </div>
                                     </td>

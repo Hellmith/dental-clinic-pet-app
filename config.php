@@ -2,7 +2,7 @@
 
 $brand = 'Мой зубной';
 
-if ($_SESSION['USER']) {
+if (isset($_SESSION['USER'])) {
 	$surname = $_SESSION['USER']['patient_surname'];
 	$name = $_SESSION['USER']['patient_name'];
 	$patronymic = $_SESSION['USER']['patient_patronymic'];
@@ -25,7 +25,7 @@ if ($_SESSION['USER']) {
 	$email = $_SESSION['USER']['email'];
 
 	$verified = $_SESSION['USER']['verified'];
-} elseif ($_SESSION['STAFF']) {
+} elseif (isset($_SESSION['STAFF'])) {
 	$surname = $_SESSION['STAFF']['staff_surname'];
 	$name = $_SESSION['STAFF']['staff_name'];
 	$patronymic = $_SESSION['STAFF']['staff_patronymic'];

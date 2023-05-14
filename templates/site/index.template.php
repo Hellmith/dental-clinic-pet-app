@@ -303,88 +303,70 @@
                 </button>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-6 md:gap-10">
-                <div class="w-full h-full bg-white gap-2 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
-                    <img src='/resources/images/cert_1.png' width="128" />
+                <div class="w-full h-full bg-white gap-3 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <img class="rounded-md" src='/resources/images/doctors/elena.png' width="128" />
                     <div class='flex flex-col justify-between'>
                         <div class="flex items-center gap-x-4 mb-3">
                             <div class="flex-shrink-0">
-                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Фамилия Имя</h3>
+                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Елена Смирнова</h3>
                             </div>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-400 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
-                        <p class="text-gray-600 flex items-center justify-between dark:text-gray-400">
-                            <span>Специальность</span>
-                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Опытный стоматолог, который специализируется на ортодонтии.</p>
                     </div>
                 </div>
-                <div class="w-full h-full bg-white gap-2 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
-                    <img src='/resources/images/cert_1.png' width="128" />
+                <div class="w-full h-full bg-white gap-3 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <img class="rounded-md" src='/resources/images/doctors/alexandr.png' width="128" />
                     <div class='flex flex-col justify-between'>
                         <div class="flex items-center gap-x-4 mb-3">
                             <div class="flex-shrink-0">
-                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Фамилия Имя</h3>
+                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Александр Кузнецов</h3>
                             </div>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-400 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
-                        <p class="text-gray-600 flex items-center justify-between dark:text-gray-400">
-                            <span>Специальность</span>
-                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Профессиональный стоматолог, который специализируется на имплантации зубов.</p>
                     </div>
                 </div>
-                <div class="w-full h-full bg-white gap-2 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
-                    <img src='/resources/images/cert_1.png' width="128" />
+                <div class="w-full h-full bg-white gap-3 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <img class="rounded-md" src='/resources/images/doctors/3.png' width="128" />
                     <div class='flex flex-col justify-between'>
                         <div class="flex items-center gap-x-4 mb-3">
                             <div class="flex-shrink-0">
-                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Фамилия Имя</h3>
+                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Дмитрий Петров</h3>
                             </div>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-400 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
-                        <p class="text-gray-600 flex items-center justify-between dark:text-gray-400">
-                            <span>Специальность</span>
-                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Опытный стоматолог, который специализируется на эндодонтии.</p>
                     </div>
                 </div>
-                <div class="w-full h-full bg-white gap-2 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
-                    <img src='/resources/images/cert_1.png' width="128" />
+                <div class="w-full h-full bg-white gap-3 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <img class="rounded-md" src='/resources/images/doctors/ivan.png' width="128" />
                     <div class='flex flex-col justify-between'>
                         <div class="flex items-center gap-x-4 mb-3">
                             <div class="flex-shrink-0">
-                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Фамилия Имя</h3>
+                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Иван Сидоров</h3>
                             </div>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-400 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
-                        <p class="text-gray-600 flex items-center justify-between dark:text-gray-400">
-                            <span>Специальность</span>
-                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Cпециалист по хирургической стоматологии. </p>
                     </div>
                 </div>
-                <div class="w-full h-full bg-white gap-2 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
-                    <img src='/resources/images/cert_1.png' width="128" />
+                <div class="w-full h-full bg-white gap-3 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <img class="rounded-md" src='/resources/images/doctors/olga.png' width="128" />
                     <div class='flex flex-col justify-between'>
                         <div class="flex items-center gap-x-4 mb-3">
                             <div class="flex-shrink-0">
-                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Фамилия Имя</h3>
+                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Ольга Николаева</h3>
                             </div>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-400 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
-                        <p class="text-gray-600 flex items-center justify-between dark:text-gray-400">
-                            <span>Специальность</span>
-                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Квалифицированный стоматолог, который специализируется на детской стоматологии. </p>
                     </div>
                 </div>
-                <div class="w-full h-full bg-white gap-2 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
-                    <img src='/resources/images/cert_1.png' width="128" />
+                <div class="w-full h-full bg-white gap-3 shadow-lg rounded-lg flex p-5 dark:bg-slate-900 hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <img class="rounded-md" src='/resources/images/doctors/maria.png' width="128" />
                     <div class='flex flex-col justify-between'>
                         <div class="flex items-center gap-x-4 mb-3">
                             <div class="flex-shrink-0">
-                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Фамилия Имя</h3>
+                                <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">Мария Иванова</h3>
                             </div>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-400 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis </p>
-                        <p class="text-gray-600 flex items-center justify-between dark:text-gray-400">
-                            <span>Специальность</span>
-                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Известный стоматолог, который специализируется на эстетической стоматологии. </p>
                     </div>
                 </div>
             </div>
@@ -511,47 +493,47 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="flex flex-col bg-white border justify-between  border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700">
                 <div class="flex-auto p-4 md:p-6">
-                    <p class="mt-3 sm:mt-6 text-base text-gray-800 md:text-xl dark:text-white"><em>
-                            " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
+                    <p class=" text-base text-gray-800 md:text-xl dark:text-white"><em>
+                            "Я осталась довольна своим визитом в стоматологию 'Мой зубной'. Врачи там очень профессиональны и дружелюбны. Я получила качественное лечение и уход за зубами. Рекомендую эту клинику всем, кто ищет хорошего стоматолога!"
                         </em></p>
                 </div>
                 <div class="p-4 rounded-b-xl md:px-6">
                     <h3 class="text-sm font-semibold text-gray-800 sm:text-base dark:text-gray-200">
-                        Фамилия Имя
+                        Анна Петрова
                     </h3>
                     <p class="text-sm text-gray-500">
-                        Кем является
+                        Клиент
                     </p>
                 </div>
             </div>
 
             <div class="flex flex-col bg-white border justify-between  border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700">
                 <div class="flex-auto p-4 md:p-6">
-                    <p class="mt-3 sm:mt-6 text-base text-gray-800 md:text-xl dark:text-white"><em>
-                            " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
+                    <p class=" text-base text-gray-800 md:text-xl dark:text-white"><em>
+                            "Я обращался в стоматологию 'Мой зубной' для проведения имплантации зубов. Очень понравилось, что врачи используют современное оборудование и технологии. Операция прошла безболезненно и быстро, а результат меня приятно удивил. Большое спасибо!"
                         </em></p>
                 </div>
                 <div class="p-4 rounded-b-xl md:px-6">
                     <h3 class="text-sm font-semibold text-gray-800 sm:text-base dark:text-gray-200">
-                        Фамилия Имя
+                        Иван Смирнов
                     </h3>
                     <p class="text-sm text-gray-500">
-                        Кем является
+                        Клиент
                     </p>
                 </div>
             </div>
             <div class="flex flex-col bg-white border justify-between  border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700">
                 <div class="flex-auto p-4 md:p-6">
-                    <p class="mt-3 sm:mt-6 text-base text-gray-800 md:text-xl dark:text-white"><em>
-                            " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
+                    <p class=" text-base text-gray-800 md:text-xl dark:text-white"><em>
+                            "Я посещаю стоматологию 'Мой зубной' уже несколько лет и всегда остаюсь довольна качеством обслуживания. Врачи всегда отвечают на мои вопросы и дают рекомендации по уходу за зубами. Отличный сервис и дружелюбный персонал - это то, что меня устраивает в этой клинике."
                         </em></p>
                 </div>
                 <div class="p-4 rounded-b-xl md:px-6">
                     <h3 class="text-sm font-semibold text-gray-800 sm:text-base dark:text-gray-200">
-                        Фамилия Имя
+                        Елена Иванова
                     </h3>
                     <p class="text-sm text-gray-500">
-                        Кем является
+                        Клиент
                     </p>
                 </div>
             </div>
