@@ -1,7 +1,4 @@
 $('document').ready(function () {
-	/**
-	 * ВЫХОД ИЗ АККАУНТА
-	 */
 	$('#logout-button').click(function () {
 		console.log('click')
 		$.ajax({
@@ -9,182 +6,198 @@ $('document').ready(function () {
 			type: 'POST',
 			success: function (data) {
 				if (data == 'success') {
-					setTimeout(() => (window.location.href = '/#'), 5000)
+					location.href = '/#'
 				}
-			}
+			},
 		})
 	})
+
+	// ----------------------------
 
 	$.ajax({
 		type: 'GET',
 		url: '/services/getAllFillialsByCity.service.php',
-		dataType: 'json'
+		dataType: 'json',
 	}).done(function (data) {
 		$('#filial').html(
 			$('<option>', {
-				text: 'Выберите филиал города...',
-				value: ''
+				text: 'Выберите из списка',
+				value: '',
 			})
 		)
 		$.each(data, function (index, f) {
 			$('#filial').append(
 				$('<option>', {
 					text: f.filial_title + ', ул. ' + f.street_name + ', д.' + f.house_number,
-					value: f.id
+					value: f.id,
 				})
 			)
 		})
 	})
 
-	// Обработка выбора филиала
-	$('#booking_form #filial').change(function (e) {
+	$('#filial').change(function (e) {
 		if (this.value == '') {
-			$('#booking_form #service')
+			$('#service')
 				.attr('disabled', true)
 				.html(
 					$('<option>', {
-						text: 'Сначало выберите филиал...',
+						text: 'Выберите филиал',
 						value: '',
-						selected: true
+						selected: true,
 					})
 				)
 		} else {
-			$('#booking_form #service')
+			$('#service')
 				.attr('disabled', false)
 				.html(
 					$('<option>', {
-						text: 'Выберите услугу...',
+						text: 'Выберите из списка',
 						value: '',
-						selected: true
+						selected: true,
 					})
 				)
-
-			// Подгрузка услуг
 			$.ajax({
 				type: 'GET',
-				url: functions_url + '/services/services_get_all.php',
-				dataType: 'json'
+				url: '/services/getAllServices.service.php',
+				dataType: 'json',
 			}).done(function (data) {
 				$.each(data, function (index, service) {
-					$('#booking_form #service').append(
+					$('#service').append(
 						$('<option>', {
 							text: service.service_title,
-							value: service.id
+							value: service.id,
 						})
 					)
 				})
 			})
 		}
 	})
-	// Обработка выбора услуги
-	$('#booking_form #service').change(function (e) {
+	$('#service').change(function (e) {
 		if (this.value == '') {
-			$('#booking_form #doctor')
+			$('#doctor')
 				.attr('disabled', true)
 				.html(
 					$('<option>', {
-						text: 'Сначало выберите услугу...',
+						text: 'Выберите услугу',
 						value: '',
-						selected: true
+						selected: true,
 					})
 				)
 		} else {
-			$('#booking_form #doctor')
+			$('#doctor')
 				.attr('disabled', false)
 				.html(
 					$('<option>', {
-						text: 'Выберите доктора...',
+						text: 'Выберите из списка',
 						value: '',
-						selected: true
+						selected: true,
 					})
 				)
 
-			// Подгрузка докторов из филиала
 			$.ajax({
 				type: 'POST',
-				url: functions_url + '/doctors/doctors_get_all_by_filial.php',
-				data: { filial_id: $('#booking_form #filial').val() },
-				dataType: 'json'
+				url: '/services/getAllDoctorsByFilial.service.php',
+				data: { filial_id: $('#filial').val() },
+				dataType: 'json',
 			}).done(function (data) {
 				doctor
 				$.each(data, function (index, doctor) {
-					$('#booking_form #doctor').append(
+					$('#doctor').append(
 						$('<option>', {
 							text: doctor.staff_surname + ' ' + doctor.staff_name + ' ' + doctor.staff_patronymic,
-							value: doctor.id
+							value: doctor.id,
 						})
 					)
 				})
 			})
 		}
 	})
-	// Обработка выбора доктора
-	$('#booking_form #doctor').change(function (e) {
+	$('#doctor').change(function (e) {
 		if (this.value == '') {
-			$('#booking_form #date')
+			$('#date')
 				.attr('disabled', true)
 				.html(
 					$('<option>', {
-						text: 'Сначало выберите доктора...',
+						text: 'Выберите доктора',
 						value: '',
-						selected: true
+						selected: true,
 					})
 				)
 		} else {
-			$('#booking_form #date')
+			$('#date')
 				.attr('disabled', false)
 				.html(
 					$('<option>', {
-						text: 'Выберите дату...',
+						text: 'Выберите дату',
 						value: '',
-						selected: true
+						selected: true,
 					})
 				)
 		}
 	})
-
-	// Обработка выбора даты
-	$('#booking_form #date').change(function (e) {
+	$('#date').change(function (e) {
 		if (this.value == '') {
-			$('#booking_form #time')
+			$('#time')
 				.attr('disabled', true)
 				.html(
 					$('<option>', {
-						text: 'Сначало выберите время...',
+						text: 'Выберите дату',
 						value: '',
-						selected: true
+						selected: true,
 					})
 				)
 		} else {
-			$('#booking_form #time')
+			$('#time')
 				.attr('disabled', false)
 				.html(
 					$('<option>', {
-						text: 'Выберите время...',
+						text: 'Выберите время',
 						value: '',
-						selected: true
+						selected: true,
 					})
 				)
 		}
 	})
-	$('#booking_form #date').click(function (e) {
+	$('#date').click(function (e) {
 		let now = new Date(),
 			minDate = now.toISOString().substring(0, 10)
 
-		$('#booking_form #date').prop('min', minDate)
+		$('#date').prop('min', minDate)
 	})
+
+	// ----------------------------
+
+	$('#new-booking-form').on('submit', function (e) {
+		e.preventDefault()
+		$.ajax({
+			type: 'POST',
+			url: '/services/setBooking.service.php',
+			data: {
+				filial_id: $('#filial').val(),
+				service_id: $('#service').val(),
+				doctor_id: $('#doctor').val(),
+				date: $('#date').val(),
+				time: $('#time').val(),
+			},
+			success: function () {
+				location.reload()
+			},
+		})
+	})
+
+	// ----------------------------
 
 	$.ajax({
 		url: '/services/getAllRegions.service.php',
 		type: 'GET',
-		dataType: 'json'
+		dataType: 'json',
 	}).done(function (data) {
 		// $('#region').empty()
 		$.each(data, function (i, region) {
 			$('#region').append(
 				$('<option>', {
 					text: region.region_code + ': ' + region.region_title,
-					value: region.id
+					value: region.id,
 				})
 			)
 		})
@@ -197,34 +210,34 @@ $('document').ready(function () {
 				$('<option>', {
 					text: 'Выберите из списка',
 					value: '',
-					selected: true
+					selected: true,
 				})
 			)
 		$.ajax({
 			type: 'GET',
 			url: '/services/getAllCitiesByRegion.service.php',
 			data: { region_id: this.value },
-			dataType: 'json'
+			dataType: 'json',
 		}).done(function (data) {
 			$.each(data, function (index, city) {
 				$('#city').append(
 					$('<option>', {
 						text: city.city_title,
-						value: city.id
+						value: city.id,
 					})
 				)
 			})
 		})
 	})
-	$('#city-set-form').submit(function (event) {
-		event.preventDefault()
+	$('#city-set-form').submit(function (e) {
+		e.preventDefault()
 		$.ajax({
 			url: '/services/setCity.service.php',
 			type: 'POST',
 			data: { city_id: $('#city').val() },
 			success: function () {
-				window.location.href = '/dashboard/bookings'
-			}
+				location.reload()
+			},
 		})
 	})
 })

@@ -3,10 +3,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/renderTemplate.php';
 
 if (!empty($_SESSION['USER']) || !empty($_SESSION['STAFF'])) {
-    if (session_status() == PHP_SESSION_ACTIVE && empty($_SESSION['USER']) && empty($_SESSION['STAFF'])) {
-        header("Location: /dashboard");
-        exit(0);
-    }
+	if (session_status() == PHP_SESSION_ACTIVE && empty($_SESSION['USER']) && empty($_SESSION['STAFF'])) {
+		header('Location: /dashboard');
+		exit(0);
+	}
 }
 
 $thisPage = renderTemplate('templates/site/index.template.php', ['brand' => $brand]);

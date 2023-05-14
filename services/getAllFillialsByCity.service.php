@@ -1,5 +1,3 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/global.inc.php';
 
-$result = $dataTools->getAllFilials();
-
-echo $result;
+echo $dataTools->getAllFilials();

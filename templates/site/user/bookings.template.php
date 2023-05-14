@@ -1,3 +1,5 @@
+<?php setlocale(LC_TIME, 'ru_RU.utf8'); ?>
+
 <header class="container">
     <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">Записи</h1>
 </header>
@@ -46,12 +48,12 @@
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left">
                                     <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                        Дата
+                                        Время
                                     </span>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left">
                                     <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                        Время
+                                        Дата
                                     </span>
                                 </th>
                             </tr>
@@ -61,8 +63,8 @@
                                 <tr>
                                     <td class="h-px w-auto whitespace-nowrap">
                                         <div class="px-6 py-2 flex items-center gap-x-3">
-                                            <span class="text-sm text-gray-600 dark:text-gray-400"><?= $booking['id'] ?></span>
-                                            <span class="text-sm text-gray-600 decoration-2"><?= $booking['filial_title'] . ', улица ' . $booking['street_name'] ?></span>
+                                            <span class="text-sm w-4 text-gray-600 dark:text-gray-400"><?= $booking['id'] ?></span>
+                                            <span class="text-sm text-gray-600 decoration-2"><?= $booking['filial_title'] . ' | ул. ' . $booking['street_name'] ?></span>
                                         </div>
                                     </td>
                                     <td class="h-px w-auto whitespace-nowrap">
@@ -72,17 +74,21 @@
                                     </td>
                                     <td class="h-px w-auto whitespace-nowrap">
                                         <div class="px-6 py-2">
-                                            <span class="text-sm text-gray-800 dark:text-gray-200"><?= $booking['staff_surname'] . ' ' . mb_substr($booking['staff_name'], 0, 1) . '.' . mb_substr($booking['staff_patronymic'], 0, 1) . '.' ?></span>
+                                            <span class="text-sm text-gray-800 dark:text-gray-200"><?= $booking['staff_surname'] . ' ' . mb_substr($booking['staff_name'], 0, 1) . '. ' . mb_substr($booking['staff_patronymic'], 0, 1) .'.' ?></span>
                                         </div>
                                     </td>
                                     <td class="h-px w-auto whitespace-nowrap">
                                         <div class="px-6 py-2">
-                                            <span class="text-sm text-gray-800 dark:text-gray-200"><?= $booking['date'] ?></span>
+                                            <span class="text-sm text-gray-800 dark:text-gray-200">
+                                                <? echo date('H:i', strtotime($booking['time'])) ?>
+                                            </span>
                                         </div>
                                     </td>
                                     <td class="h-px w-auto whitespace-nowrap">
                                         <div class="px-6 py-2">
-                                            <span class="text-sm text-gray-800 dark:text-gray-200"><?= $booking['time'] ?></span>
+                                            <span class="text-sm text-gray-800 dark:text-gray-200">
+                                                <? echo strftime('%d %B %Y', strtotime($booking['date'])) ?>
+                                            </span>
                                         </div>
                                     </td>
                                 </tr>
@@ -95,22 +101,6 @@
                                 <span class="font-semibold text-gray-800 dark:text-gray-200"><?= $bookings ?></span> представлено
                             </p>
                         </div>
-                        <!-- <div>
-                            <div class="inline-flex gap-x-2">
-                                <button type="button" class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-primary-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
-                                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-                                    </svg>
-                                    Предыдущая
-                                </button>
-                                <button type="button" class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-primary-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
-                                    Следующая
-                                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>

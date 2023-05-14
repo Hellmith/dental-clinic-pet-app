@@ -3,7 +3,7 @@
 $result = $userTools->logout();
 
 if ($result === 'Успешный выход!') {
-    echo 'success';
+	echo 'success';
 } else {
-    echo $result;
+	echo $result;
 }

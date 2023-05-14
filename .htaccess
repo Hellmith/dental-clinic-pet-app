@@ -1,4 +1,8 @@
 RewriteEngine On
 
 RewriteRule ^dashboard$ /views/dashboard.view.php [L]
+
 RewriteRule ^dashboard/bookings$ /views/user/bookings.view.php [L]
+
+RewriteRule ^dashboard/shedules$ /views/doctor/shedules.view.php [L]
+RewriteRule ^dashboard/patients$ /views/doctor/patients.view.php [L]

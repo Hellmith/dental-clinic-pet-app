@@ -40,7 +40,7 @@
                     </span>
                 </a>
             </div>
-            <div class="hs-dropdown relative inline-flex [--placement:bottom-left]" data-hs-dropdown-placement="bottom-left">
+            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]" data-hs-dropdown-placement="bottom-left">
                 <button id="hs-dropdown" type="button" class="hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center gap-2 h-[2.375rem] w-[2.375rem] rounded-full font-medium bg-white text-gray-700 align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-xs dark:bg-gray-800 dark:hover:bg-slate-800 dark:text-gray-400 dark:hover:text-white dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800">
                     <i class='fa-solid fa-user fa-xl'></i>
                 </button>
@@ -69,11 +69,24 @@
                         Профиль
                     </a>
                 </div>
-                <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
-                    <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500" href="/dashboard/bookings">
-                        Записи
-                    </a>
-                </div>
+                <?php if ($_SESSION['USER']) { ?>
+                    <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
+                        <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500" href="/dashboard/bookings">
+                            Записи
+                        </a>
+                    </div>
+                <?php } elseif ($_SESSION['STAFF']['job_id'] !== 7 || 8) { ?>
+                    <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
+                        <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500" href="/dashboard/shedules">
+                            Расписание
+                        </a>
+                    </div>
+                    <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
+                        <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500" href="/dashboard/patients">
+                            Пациенты
+                        </a>
+                    </div>
+                <?php } ?>
             </div>
         </nav>
         <div class="container mx-auto py-10 px-4 sm:px-6 lg:px-8 ">
@@ -96,7 +109,7 @@
         </button>
     </div>
     <div class="p-4 h-full">
-        <form class='flex flex-col h-[calc(100vh_-_100px)] justify-between'>
+        <form class='flex flex-col h-[calc(100vh_-_100px)] justify-between' id='new-booking-form'>
             <div class="flex flex-col">
                 <div class="mb-2">
                     <label for="filial" class="block text-sm font-medium dark:text-white">Филиал</label>
@@ -106,24 +119,24 @@
                 </div>
                 <div class="mb-2">
                     <label for="service" class="block text-sm font-medium dark:text-white">Услуга</label>
-                    <select id="service" name="service" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
-                        <option selected>Выберите из списка</option>
+                    <select id="service" name="service" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled>
+                        <option selected>Выберите филиал</option>
                     </select>
                 </div>
                 <div class="mb-2">
                     <label for="doctor" class="block text-sm font-medium dark:text-white">Врач</label>
-                    <select id="doctor" name="doctor" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
-                        <option selected>Выберите из списка</option>
+                    <select id="doctor" name="doctor" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled>
+                        <option selected>Выберите услугу</option>
                     </select>
                 </div>
                 <div class="mb-2 grid grid-cols-2 gap-2">
                     <div>
                         <label for="date" class="block text-sm font-medium dark:text-white">Дата</label>
-                        <input type="date" id="date" name="date" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                        <input type="date" id="date" name="date" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled placeholder="Выберите доктора">
                     </div>
                     <div>
                         <label for="time" class="block text-sm font-medium dark:text-white">Время</label>
-                        <input type="time" id="time" name="time" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                        <input type="time" id="time" name="time" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled placeholder="Выберите время">
                     </div>
                 </div>
                 <div class="flex justify-end">
@@ -184,11 +197,9 @@
 <!-- 
         СКРИПТЫ
     -->
-<script src=' /resources/libs/jquery/jquery.min.js'>
-</script>
+<script src=' /resources/libs/jquery/jquery.min.js'></script>
 <script src='/resources/libs/jquery/mask/mask.min.js'></script>
 <script src='/resources/libs/preline/preline.js'></script>
-<script src='/resources/js/common.js'></script>
 <script src='/resources/js/app.js'></script>
 </body>
 
