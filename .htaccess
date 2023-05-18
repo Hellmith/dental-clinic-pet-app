@@ -6,3 +6,6 @@ RewriteRule ^dashboard/bookings$ /views/user/bookings.view.php [L]
 
 RewriteRule ^dashboard/shedules$ /views/doctor/shedules.view.php [L]
 RewriteRule ^dashboard/patients$ /views/doctor/patients.view.php [L]
+
+RewriteRule ^dashboard/records$ /views/admin/records.view.php [L]
+RewriteRule ^dashboard/categories$ /views/admin/categories.view.php [L]

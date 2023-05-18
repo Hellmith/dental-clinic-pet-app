@@ -75,7 +75,7 @@
                             Записи
                         </a>
                     </div>
-                <?php } elseif ($_SESSION['STAFF']['job_id'] !== 7 || 8) { ?>
+                <?php } elseif (!$_SESSION['STAFF']['job_id'] === 7 && !$_SESSION['STAFF']['job_id'] === 8) { ?>
                     <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
                         <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500" href="/dashboard/shedules">
                             Расписание
@@ -84,6 +84,17 @@
                     <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
                         <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500" href="/dashboard/patients">
                             Пациенты
+                        </a>
+                    </div>
+                <?php } else { ?>
+                    <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
+                        <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500" href="/dashboard/records">
+                            Записи
+                        </a>
+                    </div>
+                    <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
+                        <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500" href="/dashboard/categories">
+                            Категории
                         </a>
                     </div>
                 <?php } ?>
@@ -111,6 +122,24 @@
     <div class="p-4 h-full">
         <form class='flex flex-col h-[calc(100vh_-_100px)] justify-between' id='new-booking-form'>
             <div class="flex flex-col">
+                <?php if (isset($_SESSION['STAFF'])) { ?>
+                    <div class="mb-2">
+                        <label for="surname" class="block text-sm font-medium dark:text-white">Фамилия</label>
+                        <input id="surname" type='text' name="surname" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Фамилия пациента" required />
+                    </div>
+                    <div class="mb-2">
+                        <label for="name" class="block text-sm font-medium dark:text-white">Имя</label>
+                        <input id="name" type='text' name="name" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Имя пациента" required />
+                    </div>
+                    <div class="mb-2">
+                        <label for="patronymic" class="block text-sm font-medium dark:text-white">Отчество</label>
+                        <input id="patronymic" type='text' name="patronymic" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Отчество пациента" required />
+                    </div>
+                    <div class="mb-2">
+                        <label for="phone" class="block text-sm font-medium dark:text-white">Телефон</label>
+                        <input id="phone" type='tel' name="phone" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Телефон пациента" required />
+                    </div>
+                <?php } ?>
                 <div class="mb-2">
                     <label for="filial" class="block text-sm font-medium dark:text-white">Филиал</label>
                     <select id="filial" name="filial" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
@@ -146,7 +175,11 @@
                 </div>
             </div>
             <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
-                Записаться
+                <?php if (isset($_SESSION['STAFF'])) { ?>
+                    Записать
+                <?php } else { ?>
+                    Записаться
+                <?php } ?>
             </button>
         </form>
     </div>
