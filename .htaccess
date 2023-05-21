@@ -9,3 +9,5 @@ RewriteRule ^dashboard/patients$ /views/doctor/patients.view.php [L]
 
 RewriteRule ^dashboard/records$ /views/admin/records.view.php [L]
 RewriteRule ^dashboard/categories$ /views/admin/categories.view.php [L]
+RewriteRule ^dashboard/users/patients$ /views/admin/patients.view.php [L]
+RewriteRule ^dashboard/users/staff$ /views/admin/staff.view.php [L]

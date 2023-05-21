@@ -97,6 +97,28 @@
                             Категории
                         </a>
                     </div>
+                    <div class="hs-dropdown relative inline-flex [--trigger:hover]">
+                        <button id="hs-dropdown-hover-event" type="button" class="hs-dropdown-toggle py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none">
+                            Пользователи
+                            <svg class="hs-dropdown-open:rotate-180 w-2.5 h-2.5 text-gray-600" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 5L8.16086 10.6869C8.35239 10.8637 8.64761 10.8637 8.83914 10.6869L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </button>
+
+                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden mt-2 min-w-[15rem] bg-white shadow-md rounded-lg p-2 mt-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700 after:h-4 after:absolute after:-bottom-4 after:left-0 after:w-full before:h-4 before:absolute before:-top-4 before:left-0 before:w-full" aria-labelledby="hs-dropdown-hover-event">
+                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="/dashboard/users/patients">
+                                Пациенты
+                            </a>
+                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="/dashboard/users/staff">
+                                Персонал
+                            </a>
+                            <div class="py-2 first:pt-0 last:pb-0">
+                                <button type='button' class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+                                    Новый пользователь
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 <?php } ?>
             </div>
         </nav>
@@ -185,6 +207,31 @@
     </div>
 </div>
 
+<div id="new-category-canvas" class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full fixed top-0 left-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-r dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
+    <div class="flex justify-between items-center h-[71px] py-3 px-4 border-b dark:border-gray-700">
+        <h3 class="font-bold text-gray-800 dark:text-white">
+            Добавить категорию
+        </h3>
+        <button type="button" class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white text-sm dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#doctors-appointment-canvas">
+            <span class="sr-only">Close modal</span>
+            <i class='fa-solid fa-xmark'></i>
+        </button>
+    </div>
+    <div class="p-4 h-full">
+        <form class='flex flex-col h-[calc(100vh_-_100px)] justify-between' id='new-category-form'>
+            <div class="flex flex-col">
+                <div>
+                    <label for="name" class="block text-sm font-medium dark:text-white">Название</label>
+                    <input id="name" type='text' name="name" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Название категории" required />
+                </div>
+            </div>
+            <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
+                Добавить
+            </button>
+        </form>
+    </div>
+</div>
+
 <!-- 
         МОДАЛЬНЫЕ ОКНА
      -->
@@ -234,6 +281,7 @@
 <script src='/resources/libs/jquery/mask/mask.min.js'></script>
 <script src='/resources/libs/preline/preline.js'></script>
 <script src='/resources/js/app.js'></script>
+<script src='/resources/js/common.js'></script>
 </body>
 
 </html>
