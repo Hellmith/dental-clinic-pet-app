@@ -1,3 +1,106 @@
+<?php session_start();
+require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/renderTemplate.php';
+
+($conn = mysqli_connect('127.0.0.1', 'root', '', 'dentistry')) or die('Error: ' . mysqli_error($conn));
+
+if (isset($_POST['add_category']) && (empty($_SESSION['msg']['button_value']) || (int)$_POST['add_category'] != (int)$_SESSION['msg']['button_value'])) {
+    $query = "SELECT id FROM `services_categories` WHERE `category_title` = '$_POST[category_title]'";
+    $category = mysqli_fetch_assoc(mysqli_query($conn, $query));
+    if (empty($category)) {
+        $query = "INSERT INTO `services_categories` (`category_title`) VALUES ('$_POST[category_title]')";
+        $res = mysqli_query($conn, $query);
+        if ($res) {
+            // Если успешно, сборка сообщения для вывода
+            $category_message = "Успех. Категория $_POST[category_title] добавлена";
+            $_SESSION['msg']['value'] = $category_message;
+            $_SESSION['msg']['shown'] = false;
+            $_SESSION['msg']['button_value'] = $_POST['add_category'];
+        }
+    } else {
+        $category_message = "Ошибка. Категория $_POST[category_title] уже создана";
+    }
+}
+
+// Если прошло событие нажатие кнопки (отправился POST)
+if (isset($_POST['registration_form'])) {
+    $message = '';
+
+    if (!empty($_POST['role']) && $_POST['role'] == 1) {
+        // Проверка на пользователя
+        $query = "SELECT * FROM patients WHERE email = '$_POST[email]'";
+        $res = mysqli_query($conn, $query);
+        $userRow1 = mysqli_fetch_array($res, MYSQLI_ASSOC);
+        if ($userRow1)
+            $message .= "Эта почта уже используется <br /> ";
+        $query = "SELECT * FROM patients WHERE phone = '$_POST[phone]'";
+        $res = mysqli_query($conn, $query);
+        $userRow2 = mysqli_fetch_array($res, MYSQLI_ASSOC);
+        if ($userRow2)
+            $message .= "Этот номер телефона уже используется <br /> ";
+        if (!$userRow1 && !$userRow2) {
+            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $query = "INSERT INTO
+		`patients` (`patient_surname`, `patient_name`, `patient_patronymic`, `phone`, `email`, `password`)
+		VALUES ('$_POST[name]', '$_POST[surname]', '$_POST[patronymic]', '$_POST[phone]', '$_POST[email]', '$password')";
+            $res = mysqli_query($conn, $query);
+            if ($res) {
+                $message_box = "Пользователь $_POST[surname] " . mb_substr($_POST['name'], 0, 1) . '.' . mb_substr($_POST['patronymic'], 0, 1) . ".  успешно зарегистрирован";
+            }
+        }
+    } else {
+        // Проверка на работника
+        $query = "SELECT * FROM staffs WHERE email = '$_POST[email]'";
+        $res = mysqli_query($conn, $query);
+        $userRow1 = mysqli_fetch_array($res, MYSQLI_ASSOC);
+        if ($userRow1)
+            $message .= "Эта почта уже используется <br /> ";
+        $query = "SELECT * FROM staffs WHERE phone = '$_POST[phone]'";
+        $res = mysqli_query($conn, $query);
+        $userRow2 = mysqli_fetch_array($res, MYSQLI_ASSOC);
+        if ($userRow2)
+            $message .= "Этот номер телефона уже используется <br /> ";
+        if (!$userRow1 && !$userRow2) {
+            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $query = "INSERT INTO
+		`staffs` (`staff_surname`, `staff_name`, `staff_patronymic`, `phone`, `email`, `password`, `filial_id`)
+		VALUES ('$_POST[surname]', '$_POST[name]', '$_POST[patronymic]', '$_POST[phone]', '$_POST[email]', '$password', '$filial_data[id]')";
+            $res = mysqli_query($conn, $query);
+            if ($res) {
+                $message_box = "Сотрудник $_POST[surname] " . mb_substr($_POST['name'], 0, 1) . '.' . mb_substr($_POST['patronymic'], 0, 1) . ".  успешно зарегистрирован";
+            }
+        }
+    }
+}
+
+// Обработка добавления услуги
+if (isset($_POST['add_service']) && (empty($_SESSION['msg']['button_value']) || (int)$_POST['add_service'] != (int)$_SESSION['msg']['button_value'])) {
+    $query = "SELECT id FROM `services` WHERE `service_title` = '$_POST[service_title]'";
+    $service = mysqli_fetch_assoc(mysqli_query($conn, $query));
+    if (empty($service)) {
+        $query =
+            "INSERT INTO
+		`services` (`service_title`, `category_id`)
+		VALUES ('$_POST[service_title]', '$_POST[category_id]')";
+        $res1 = mysqli_query($conn, $query);
+        $id = mysqli_insert_id($conn);
+        $query = "INSERT INTO
+		`prices` (`service_id`, `price`)
+		VALUES ($id, '$_POST[price]')";
+        $res2 = mysqli_query($conn, $query);
+        if ($res1 && $res2) {
+            // Если успешно, сборка сообщения для вывода
+            $service_message = "Успех. Услуга $_POST[service_title] добавлена";
+            $_SESSION['msg']['value'] = $service_message;
+            $_SESSION['msg']['shown'] = false;
+            $_SESSION['msg']['button_value'] = $_POST['add_category'];
+        }
+    } else {
+        $service_message = "Ошибка. Услуга $_POST[service_title] уже создана";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang='ru'>
 
@@ -75,7 +178,7 @@
                             Записи
                         </a>
                     </div>
-                <?php } elseif (!$_SESSION['STAFF']['job_id'] === 7 && !$_SESSION['STAFF']['job_id'] === 8) { ?>
+                <?php } elseif ($_SESSION['STAFF']['job_id'] == 6) { ?>
                     <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
                         <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500" href="/dashboard/shedules">
                             Расписание
@@ -97,6 +200,11 @@
                             Категории
                         </a>
                     </div>
+                    <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
+                        <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500" href="/dashboard/services">
+                            Услуги
+                        </a>
+                    </div>
                     <div class="hs-dropdown relative inline-flex [--trigger:hover]">
                         <button id="hs-dropdown-hover-event" type="button" class="hs-dropdown-toggle py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none">
                             Пользователи
@@ -105,7 +213,7 @@
                             </svg>
                         </button>
 
-                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden mt-2 min-w-[15rem] bg-white shadow-md rounded-lg p-2 mt-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700 after:h-4 after:absolute after:-bottom-4 after:left-0 after:w-full before:h-4 before:absolute before:-top-4 before:left-0 before:w-full" aria-labelledby="hs-dropdown-hover-event">
+                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-[15rem] bg-white shadow-md rounded-lg p-2 mt-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700 after:h-4 after:absolute after:-bottom-4 after:left-0 after:w-full before:h-4 before:absolute before:-top-4 before:left-0 before:w-full" aria-labelledby="hs-dropdown-hover-event">
                             <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="/dashboard/users/patients">
                                 Пациенты
                             </a>
@@ -113,7 +221,7 @@
                                 Персонал
                             </a>
                             <div class="py-2 first:pt-0 last:pb-0">
-                                <button type='button' class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 w-full">
+                                <button type='button' data-hs-overlay="#new-user-canvas" class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 w-full">
                                     Новый пользователь
                                 </button>
                             </div>
@@ -126,162 +234,257 @@
             <?= $content ?>
         </div>
     </main>
-</body>
 
-<!-- 
+    <!-- 
     КАНВАСЫ
  -->
-<div id="doctors-appointment-canvas" class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full fixed top-0 left-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-r dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
-    <div class="flex justify-between items-center h-[71px] py-3 px-4 border-b dark:border-gray-700">
-        <h3 class="font-bold text-gray-800 dark:text-white">
-            Запись к врачу
-        </h3>
-        <button type="button" class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white text-sm dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#doctors-appointment-canvas">
-            <span class="sr-only">Close modal</span>
-            <i class='fa-solid fa-xmark'></i>
-        </button>
+    <div id="doctors-appointment-canvas" class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full fixed top-0 left-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-r dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
+        <div class="flex justify-between items-center h-[71px] py-3 px-4 border-b dark:border-gray-700">
+            <h3 class="font-bold text-gray-800 dark:text-white">
+                Запись к врачу
+            </h3>
+            <button type="button" class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white text-sm dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#doctors-appointment-canvas">
+                <span class="sr-only">Close modal</span>
+                <i class='fa-solid fa-xmark'></i>
+            </button>
+        </div>
+        <div class="p-4 h-full">
+            <form class='flex flex-col h-[calc(100vh_-_100px)] justify-between' id='new-booking-form'>
+                <div class="flex flex-col">
+                    <?php if (isset($_SESSION['STAFF'])) { ?>
+                        <div class="mb-2">
+                            <label for="surname" class="block text-sm font-medium dark:text-white">Фамилия</label>
+                            <input id="surname" type='text' name="surname" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Фамилия пациента" required />
+                        </div>
+                        <div class="mb-2">
+                            <label for="name" class="block text-sm font-medium dark:text-white">Имя</label>
+                            <input id="name" type='text' name="name" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Имя пациента" required />
+                        </div>
+                        <div class="mb-2">
+                            <label for="patronymic" class="block text-sm font-medium dark:text-white">Отчество</label>
+                            <input id="patronymic" type='text' name="patronymic" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Отчество пациента" required />
+                        </div>
+                        <div class="mb-2">
+                            <label for="phone" class="block text-sm font-medium dark:text-white">Телефон</label>
+                            <input id="phone" type='tel' name="phone" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Телефон пациента" required />
+                        </div>
+                    <?php } ?>
+                    <div class="mb-2">
+                        <label for="filial" class="block text-sm font-medium dark:text-white">Филиал</label>
+                        <select id="filial" name="filial" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                            <option selected>Выберите из списка</option>
+                        </select>
+                    </div>
+                    <div class="mb-2">
+                        <label for="service" class="block text-sm font-medium dark:text-white">Услуга</label>
+                        <select id="service" name="service" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled>
+                            <option selected>Выберите филиал</option>
+                        </select>
+                    </div>
+                    <div class="mb-2">
+                        <label for="doctor" class="block text-sm font-medium dark:text-white">Врач</label>
+                        <select id="doctor" name="doctor" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled>
+                            <option selected>Выберите услугу</option>
+                        </select>
+                    </div>
+                    <div class="mb-2 grid grid-cols-2 gap-2">
+                        <div>
+                            <label for="date" class="block text-sm font-medium dark:text-white">Дата</label>
+                            <input type="date" id="date" name="date" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled placeholder="Выберите доктора">
+                        </div>
+                        <div>
+                            <label for="time" class="block text-sm font-medium dark:text-white">Время</label>
+                            <input type="time" id="time" name="time" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled placeholder="Выберите время">
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="button" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold text-primary-500 hover:text-primary-700 focus:outline-none focus:ring-2 ring-offset-white focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm" data-hs-overlay="#modal-set-city">
+                            Изменить город
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
+                    <?php if (isset($_SESSION['STAFF'])) { ?>
+                        Записать
+                    <?php } else { ?>
+                        Записаться
+                    <?php } ?>
+                </button>
+            </form>
+        </div>
     </div>
-    <div class="p-4 h-full">
-        <form class='flex flex-col h-[calc(100vh_-_100px)] justify-between' id='new-booking-form'>
-            <div class="flex flex-col">
-                <?php if (isset($_SESSION['STAFF'])) { ?>
+
+    <div id="new-category-canvas" class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full fixed top-0 left-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-r dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
+        <div class="flex justify-between items-center h-[71px] py-3 px-4 border-b dark:border-gray-700">
+            <h3 class="font-bold text-gray-800 dark:text-white">
+                Добавить категорию
+            </h3>
+            <button type="button" class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white text-sm dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#doctors-appointment-canvas">
+                <span class="sr-only">Close modal</span>
+                <i class='fa-solid fa-xmark'></i>
+            </button>
+        </div>
+        <div class="p-4 h-full">
+            <form action="" method="POST" class='flex flex-col h-[calc(100vh_-_100px)] justify-between' id='new-category-form'>
+                <div class="flex flex-col">
+                    <div>
+                        <label for="category_title" class="block text-sm font-medium dark:text-white">Название</label>
+                        <input id="category_title" type='text' name="category_title" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Название категории" required />
+                    </div>
+                </div>
+                <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" name="add_category" value="<?= isset($_POST['add_category']) && $_POST['add_category'] == 1 ? 0 : 1 ?>">
+                    Добавить
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="new-service-canvas" class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full fixed top-0 left-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-r dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
+        <div class="flex justify-between items-center h-[71px] py-3 px-4 border-b dark:border-gray-700">
+            <h3 class="font-bold text-gray-800 dark:text-white">
+                Добавить услугу
+            </h3>
+            <button type="button" class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white text-sm dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#doctors-appointment-canvas">
+                <span class="sr-only">Close modal</span>
+                <i class='fa-solid fa-xmark'></i>
+            </button>
+        </div>
+        <div class="p-4 h-full">
+            <form action="" method="POST" class='flex flex-col h-[calc(100vh_-_100px)] justify-between' id='new-category-form'>
+                <div class="flex flex-col">
+                    <div class='mb-2'>
+                        <label for="service_title" class="block text-sm font-medium dark:text-white">Название</label>
+                        <input id="service_title" type='text' name="service_title" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Название услуги" required />
+                    </div>
+                    <div class='mb-2'>
+                        <label for='category_id' class='block text-sm font-medium'>Категория</label>
+                        <select class="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500" name="service_id" id="category_id">
+                            <? foreach ($services_categories as $cat) : ?>
+                                <option value="<?= $cat['id'] ?>" <?= $cat['id'] == $ser['category_id'] ? 'selected' : '' ?>>
+                                    <?= $cat['category_title'] ?>
+                                </option>
+                            <? endforeach; ?>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="price" class="block text-sm font-medium dark:text-white">Цена</label>
+                        <input id="price" type='number' name="price" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Цена" required />
+                    </div>
+                </div>
+                <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" name="add_service" value="<?= isset($_POST['add_service']) && $_POST['add_service'] == 1 ? 0 : 1 ?>">
+                    Добавить
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="new-user-canvas" class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full fixed top-0 left-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-r dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
+        <div class="flex justify-between items-center h-[71px] py-3 px-4 border-b dark:border-gray-700">
+            <h3 class="font-bold text-gray-800 dark:text-white">
+                Добавить пользователя
+            </h3>
+            <button type="button" class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white text-sm dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#doctors-appointment-canvas">
+                <span class="sr-only">Close modal</span>
+                <i class='fa-solid fa-xmark'></i>
+            </button>
+        </div>
+        <div class="p-4 h-full">
+            <form action='' form='POST' class='flex flex-col h-[calc(100vh_-_100px)] justify-between' id='registration_form'>
+                <div class="flex flex-col">
                     <div class="mb-2">
                         <label for="surname" class="block text-sm font-medium dark:text-white">Фамилия</label>
-                        <input id="surname" type='text' name="surname" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Фамилия пациента" required />
+                        <input id="surname" type='text' name="surname" value="<?= $_POST['surname'] ?? '' ?>" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Фамилия" required />
                     </div>
                     <div class="mb-2">
                         <label for="name" class="block text-sm font-medium dark:text-white">Имя</label>
-                        <input id="name" type='text' name="name" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Имя пациента" required />
+                        <input id="name" type='text' name="name" value="<?= $_POST['name'] ?? '' ?>" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Имя" required />
                     </div>
                     <div class="mb-2">
                         <label for="patronymic" class="block text-sm font-medium dark:text-white">Отчество</label>
-                        <input id="patronymic" type='text' name="patronymic" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Отчество пациента" required />
+                        <input id="patronymic" type='text' name="patronymic" value="<?= $_POST['patronymic'] ?? '' ?>" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Отчество" required />
                     </div>
-                    <div class="mb-2">
-                        <label for="phone" class="block text-sm font-medium dark:text-white">Телефон</label>
-                        <input id="phone" type='tel' name="phone" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Телефон пациента" required />
+                    <div class='mb-2 grid-cols-2 gap-2'>
+                        <div>
+                            <label for="email" class="block text-sm font-medium dark:text-white">Почта</label>
+                            <input id="email" type='email' name="email" value="<?= $_POST['email'] ?? '' ?>" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Почта" required />
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium dark:text-white">Телефон</label>
+                            <input type="tel" id="phone" name="phone" value="<?= $_POST['phone'] ?? '' ?>" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400" placeholder="+7 (XXX) XXX-XX-XX" data-mask='+7 (000) 000-00-00' required>
+                        </div>
                     </div>
-                <?php } ?>
-                <div class="mb-2">
-                    <label for="filial" class="block text-sm font-medium dark:text-white">Филиал</label>
-                    <select id="filial" name="filial" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
-                        <option selected>Выберите из списка</option>
-                    </select>
-                </div>
-                <div class="mb-2">
-                    <label for="service" class="block text-sm font-medium dark:text-white">Услуга</label>
-                    <select id="service" name="service" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled>
-                        <option selected>Выберите филиал</option>
-                    </select>
-                </div>
-                <div class="mb-2">
-                    <label for="doctor" class="block text-sm font-medium dark:text-white">Врач</label>
-                    <select id="doctor" name="doctor" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled>
-                        <option selected>Выберите услугу</option>
-                    </select>
-                </div>
-                <div class="mb-2 grid grid-cols-2 gap-2">
-                    <div>
-                        <label for="date" class="block text-sm font-medium dark:text-white">Дата</label>
-                        <input type="date" id="date" name="date" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled placeholder="Выберите доктора">
+                    <div class="mb-4">
+                        <label for="password" class="block text-sm font-medium dark:text-white">Пароль</label>
+                        <input id="password" type='password' name="password" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Пароль" required />
                     </div>
-                    <div>
-                        <label for="time" class="block text-sm font-medium dark:text-white">Время</label>
-                        <input type="time" id="time" name="time" class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled placeholder="Выберите время">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="flex">
+                            <input type="radio" name="role" id="role1" value="1" class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
+                            <label for="role1" class="text-sm text-gray-500 ml-2 dark:text-gray-400">Пациент</label>
+                        </div>
+                        <div class="flex">
+                            <input type="radio" name="role" id="role2" value="2" class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
+                            <label for="role2" class="text-sm text-gray-500 ml-2 dark:text-gray-400">Сотрудник</label>
+                        </div>
                     </div>
                 </div>
-                <div class="flex justify-end">
-                    <button type="button" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold text-primary-500 hover:text-primary-700 focus:outline-none focus:ring-2 ring-offset-white focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm" data-hs-overlay="#modal-set-city">
-                        Изменить город
-                    </button>
-                </div>
-            </div>
-            <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
-                <?php if (isset($_SESSION['STAFF'])) { ?>
-                    Записать
-                <?php } else { ?>
-                    Записаться
-                <?php } ?>
-            </button>
-        </form>
+                <button class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" name="registration_form" type="submit">
+                    Зарегистрировать
+                </button>
+            </form>
+        </div>
     </div>
-</div>
 
-<div id="new-category-canvas" class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full fixed top-0 left-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-r dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
-    <div class="flex justify-between items-center h-[71px] py-3 px-4 border-b dark:border-gray-700">
-        <h3 class="font-bold text-gray-800 dark:text-white">
-            Добавить категорию
-        </h3>
-        <button type="button" class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white text-sm dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#doctors-appointment-canvas">
-            <span class="sr-only">Close modal</span>
-            <i class='fa-solid fa-xmark'></i>
-        </button>
-    </div>
-    <div class="p-4 h-full">
-        <form class='flex flex-col h-[calc(100vh_-_100px)] justify-between' id='new-category-form'>
-            <div class="flex flex-col">
-                <div>
-                    <label for="name" class="block text-sm font-medium dark:text-white">Название</label>
-                    <input id="name" type='text' name="name" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" placeholder="Название категории" required />
-                </div>
-            </div>
-            <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
-                Добавить
-            </button>
-        </form>
-    </div>
-</div>
-
-<!-- 
+    <!-- 
         МОДАЛЬНЫЕ ОКНА
      -->
-<div id="modal-set-city" class="hs-overlay hidden w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto">
-    <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
-        <div class="bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
-            <div class="p-4 sm:p-7">
-                <div class="text-center">
-                    <h2 class="block text-2xl font-bold text-gray-800 dark:text-gray-200">Выбор города</h2>
-                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        Уже выбрали?
-                        <button class="text-primary-600 decoration-2 hover:underline font-medium" type='button' data-hs-overlay="#doctors-appointment-canvas">
-                            Запишитесь на прием
-                        </button>
-                    </p>
-                </div>
-                <div class="mt-5">
-                    <form class="grid gap-y-4" id='city-set-form'>
-                        <div>
-                            <label for="region" class="block text-sm font-medium mb-2 dark:text-white">Регион</label>
-                            <div class="relative">
-                                <select id="region" name="region" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
-                                    <option selected>Выберите из списка</option>
-                                </select>
+    <div id="modal-set-city" class="hs-overlay hidden w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto">
+        <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
+            <div class="bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-4 sm:p-7">
+                    <div class="text-center">
+                        <h2 class="block text-2xl font-bold text-gray-800 dark:text-gray-200">Выбор города</h2>
+                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                            Уже выбрали?
+                            <button class="text-primary-600 decoration-2 hover:underline font-medium" type='button' data-hs-overlay="#doctors-appointment-canvas">
+                                Запишитесь на прием
+                            </button>
+                        </p>
+                    </div>
+                    <div class="mt-5">
+                        <form class="grid gap-y-4" id='city-set-form'>
+                            <div>
+                                <label for="region" class="block text-sm font-medium mb-2 dark:text-white">Регион</label>
+                                <div class="relative">
+                                    <select id="region" name="region" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                                        <option selected>Выберите из списка</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <label for="city" class="block text-sm font-medium mb-2 dark:text-white">Город</label>
-                            <div class="relative">
-                                <select id="city" name="city" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled>
-                                    <option selected>Выберите регион</option>
-                                </select>
+                            <div>
+                                <label for="city" class="block text-sm font-medium mb-2 dark:text-white">Город</label>
+                                <div class="relative">
+                                    <select id="city" name="city" class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" disabled>
+                                        <option selected>Выберите регион</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Выбрать</button>
-                    </form>
+                            <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Выбрать</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- 
+    <!-- 
         СКРИПТЫ
     -->
-<script src=' /resources/libs/jquery/jquery.min.js'></script>
-<script src='/resources/libs/jquery/mask/mask.min.js'></script>
-<script src='/resources/libs/preline/preline.js'></script>
-<script src='/resources/js/app.js'></script>
-<script src='/resources/js/common.js'></script>
+    <script src='/resources/libs/jquery/jquery.min.js'></script>
+    <script src='/resources/libs/jquery/mask/mask.min.js'></script>
+    <script src='/resources/libs/preline/preline.js'></script>
+    <script src='/resources/js/app.js'></script>
+    <script src='/resources/js/common.js'></script>
 </body>
 
 </html>

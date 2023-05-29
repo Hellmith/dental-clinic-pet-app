@@ -12,18 +12,6 @@ $('document').ready(function () {
         })
     })
 
-    $('#new-category-form').on('submit', (e) => {
-        e.preventDefault()
-        $.ajax({
-            type: 'POST',
-            url: '/services/addCategory.service.php',
-            data: { category_name: 'name' },
-            success: function () {
-                location.reload()
-            },
-        })
-    })
-
     // ----------------------------
 
     $.ajax({

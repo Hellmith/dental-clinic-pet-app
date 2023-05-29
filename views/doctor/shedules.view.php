@@ -4,9 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/renderTemplate.php';
 
 ($conn = mysqli_connect('127.0.0.1', 'root', '', 'dentistry')) or die('Error: ' . mysqli_error($conn));
 
-$query =
-    "SELECT * FROM filials AS f
-    WHERE f.id = " . $_SESSION['STAFF']['filial_id'];
+$query = "SELECT * FROM filials AS f WHERE f.id = " . $_SESSION['STAFF']['filial_id'];
 $filial_data = mysqli_fetch_assoc(mysqli_query($conn, $query));
 
 $filter = 'WHERE 1=1 and b.staff_id = ' . $_SESSION['STAFF']['id'];
