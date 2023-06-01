@@ -1,5 +1,7 @@
 <header class="container">
-    <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">Записи</h1>
+    <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">
+        Записи на приём
+    </h1>
 </header>
 <section class="container py-10 lg:py-14 mx-auto">
     <div class="flex flex-col">
@@ -9,11 +11,8 @@
                     <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-gray-700">
                         <div>
                             <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                                Список записей
+                                Список всех записей:
                             </h2>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">
-                                Какой-то текст
-                            </p>
                         </div>
                         <div>
                             <div class="inline-flex gap-x-2">
@@ -87,7 +86,7 @@
                                             <span class="text-sm text-gray-800 dark:text-gray-200">
                                                 <?php
                                                 setlocale(LC_TIME, 'ru_RU.utf8');
-                                                $date = strftime("%d %B %Y", strtotime($booking['date']));
+                                                $date = strftime("%d %h %Y", strtotime($booking['date']));
                                                 echo $date;
                                                 ?>
                                             </span>
