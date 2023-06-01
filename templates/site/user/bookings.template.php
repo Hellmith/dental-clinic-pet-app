@@ -85,9 +85,11 @@
                                     <td class="h-px w-auto whitespace-nowrap">
                                         <div class="px-6 py-2">
                                             <span class="text-sm text-gray-800 dark:text-gray-200">
-                                                <?
+                                                <?php
                                                 setlocale(LC_TIME, 'ru_RU.utf8');
-                                                echo strftime('%d %B %Y', strtotime($booking['date'])) ?>
+                                                $date = strftime("%d %B %Y", strtotime($booking['date']));
+                                                echo $date;
+                                                ?>
                                             </span>
                                         </div>
                                     </td>
