@@ -12,24 +12,42 @@ $('document').ready(function () {
         })
     })
 
-    const getSortTabel = ({ target }) => {
-        const order = target.dataset.order === '-1' ? -1 : 1
-        const index = [...target.parentNode.cells].indexOf(target)
+    // Function to get sorted table based on clicked header
+    function getSortTable(event) {
+        // get clicked header and the order value
+        const target = event.target
+        let order = parseInt(target.dataset.order) || 1 // initialize to 1 if no value
+        target.dataset.order = (-1 * order).toString() // toggle -1 and 1
+
+        // get column index of clicked header
+        const index = Array.from(target.parentNode.cells).indexOf(target)
+
+        // sort table rows based on column
         const collator = new Intl.Collator(['en', 'ru'], { numeric: true })
-        const comparator = (index, order) => (a, b) => order * collator.compare(a.children[index].innerHTML, b.children[index].innerHTML)
-        if (target.closest) {
+        const comparator = (index, order) => (a, b) => {
+            return order * collator.compare(a.children[index].innerHTML, b.children[index].innerHTML)
+        }
+        if (target.closest('table')) {
             for (const tBody of target.closest('table').tBodies) {
-                tBody.append(...[...tBody.rows].sort(comparator(index, order)))
+                const rows = Array.from(tBody.rows)
+                rows.sort(comparator(index, order))
+                tBody.append(...rows)
             }
         }
+
+        // toggle sorted class for clicked header and remove order attribute for other headers
         for (const cell of target.parentNode.cells) {
             cell.classList.toggle('sorted', cell === target)
+            if (cell !== target) {
+                delete cell.dataset.order
+            }
         }
     }
 
-    document.querySelectorAll('table thead').forEach((thead) => {
+    // Add event listener to all table headers
+    document.querySelectorAll('table thead th').forEach((thead) => {
         thead.addEventListener('click', function (event) {
-            getSortTabel(event)
+            getSortTable(event)
         })
     })
 

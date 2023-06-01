@@ -201,7 +201,7 @@ if (isset($_POST['add_service']) && (empty($_SESSION['msg']['button_value']) || 
                         </a>
                     </div>
                     <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
-                        <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:hover:text-gray-500" href="/dashboard/patients">
+                        <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:hover:text-gray-500" href="/dashboard/patients<?= $_GET['date_filter'] ? '?date_filter=' . $_GET['date_filter'] : '' ?>">
                             Пациенты
                         </a>
                     </div>
