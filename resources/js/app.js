@@ -12,6 +12,27 @@ $('document').ready(function () {
         })
     })
 
+    const getSortTabel = ({ target }) => {
+        const order = target.dataset.order === '-1' ? -1 : 1
+        const index = [...target.parentNode.cells].indexOf(target)
+        const collator = new Intl.Collator(['en', 'ru'], { numeric: true })
+        const comparator = (index, order) => (a, b) => order * collator.compare(a.children[index].innerHTML, b.children[index].innerHTML)
+        if (target.closest) {
+            for (const tBody of target.closest('table').tBodies) {
+                tBody.append(...[...tBody.rows].sort(comparator(index, order)))
+            }
+        }
+        for (const cell of target.parentNode.cells) {
+            cell.classList.toggle('sorted', cell === target)
+        }
+    }
+
+    document.querySelectorAll('table thead').forEach((thead) => {
+        thead.addEventListener('click', function (event) {
+            getSortTabel(event)
+        })
+    })
+
     // ----------------------------
 
     $.ajax({

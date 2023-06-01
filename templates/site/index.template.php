@@ -479,51 +479,23 @@
 <section class='text-gray-800 w-full flex items-center justify-center'>
     <div class="max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="flex flex-col bg-white border justify-between  border-gray-200 shadow-sm rounded-xl">
-                <div class="flex-auto p-4 md:p-6">
-                    <p class=" text-base text-gray-800 md:text-xl ">
-                        <em>
-                            "Я осталась довольна своим визитом в стоматологию 'Мой зубной'. Врачи там очень профессиональны и дружелюбны. Я получила качественное лечение и уход за зубами. Рекомендую эту клинику всем, кто ищет хорошего стоматолога!"
-                        </em>
-                    </p>
+            <? while ($patient = mysqli_fetch_assoc($patients_result)) : ?>
+                <div class="flex flex-col bg-white border justify-between  border-gray-200 shadow-sm rounded-xl">
+                    <div class="flex-auto p-4 md:p-6">
+                        <p class="text-base text-gray-800 md:text-xl ">
+                            <em>
+                                "<?= $patient['testimonial'] ?>"
+                            </em>
+                        </p>
+                    </div>
+                    <div class="p-4 rounded-b-xl md:px-6">
+                        <h3 class="text-sm font-semibold text-gray-800 sm:text-base ">
+                            <?= $patient['patient_surname'] . ' ' . $patient['patient_name'] ?>
+                        </h3>
+                        <p class="text-sm text-gray-500"> Клиент </p>
+                    </div>
                 </div>
-                <div class="p-4 rounded-b-xl md:px-6">
-                    <h3 class="text-sm font-semibold text-gray-800 sm:text-base ">
-                        Анна Петрова
-                    </h3>
-                    <p class="text-sm text-gray-500"> Клиент </p>
-                </div>
-            </div>
-            <div class="flex flex-col bg-white border justify-between  border-gray-200 shadow-sm rounded-xl">
-                <div class="flex-auto p-4 md:p-6">
-                    <p class="text-base text-gray-800 md:text-xl ">
-                        <em>
-                            "Я обращался в стоматологию 'Мой зубной' для проведения имплантации зубов. Очень понравилось, что врачи используют современное оборудование и технологии. Операция прошла безболезненно и быстро, а результат меня приятно удивил. Большое спасибо!"
-                        </em>
-                    </p>
-                </div>
-                <div class="p-4 rounded-b-xl md:px-6">
-                    <h3 class="text-sm font-semibold text-gray-800 sm:text-base ">
-                        Иван Смирнов
-                    </h3>
-                    <p class="text-sm text-gray-500"> Клиент </p>
-                </div>
-            </div>
-            <div class="flex flex-col bg-white border justify-between  border-gray-200 shadow-sm rounded-xl">
-                <div class="flex-auto p-4 md:p-6">
-                    <p class="text-base text-gray-800 md:text-xl">
-                        <em>
-                            "Я посещаю стоматологию 'Мой зубной' уже несколько лет и всегда остаюсь довольна качеством обслуживания. Врачи всегда отвечают на мои вопросы и дают рекомендации по уходу за зубами. Отличный сервис и дружелюбный персонал - это то, что меня устраивает в этой клинике."
-                        </em>
-                    </p>
-                </div>
-                <div class="p-4 rounded-b-xl md:px-6">
-                    <h3 class="text-sm font-semibold text-gray-800 sm:text-base ">
-                        Елена Иванова
-                    </h3>
-                    <p class="text-sm text-gray-500"> Клиент </p>
-                </div>
-            </div>
+            <? endwhile; ?>
         </div>
     </div>
 </section>

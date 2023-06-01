@@ -1,101 +1,149 @@
-<header class="container">
-    <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">
+<header class="container mb-10 lg:mb-14">
+    <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl">
         Записи на приём
     </h1>
 </header>
-<section class="container py-10 lg:py-14 mx-auto">
+<section class="container mx-auto">
     <div class="flex flex-col">
         <div class="-m-1.5 overflow-x-auto">
             <div class="p-1.5 min-w-full inline-block align-middle">
-                <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-slate-900 dark:border-gray-700">
-                    <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-gray-700">
-                        <div>
-                            <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                                Список всех записей:
-                            </h2>
-                        </div>
-                        <div>
-                            <div class="inline-flex gap-x-2">
-                                <Button class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" href type="button" data-hs-overlay="#doctors-appointment-canvas">
-                                    Новая запись
-                                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2.63452 7.50001L13.6345 7.5M8.13452 13V2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                                    </svg>
-                                </Button>
-                            </div>
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hiddendark:border-gray-700">
+                    <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-800">
+                            Список записей
+                        </h2>
+                        <div class="inline-flex gap-x-2">
+                            <a download href='../../../resources/docs/dogovor.docx' class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md bg-primary-100 border border-transparent font-semibold text-primary-500 hover:text-white hover:bg-primary-500 focus:outline-none focus:ring-2 ring-offset-white focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm">
+                                Ознакомиться с договором
+                                <i class="fa-regular fa-file-word"></i>
+                            </a>
+                            <? if (empty($_SESSION['USER']['testimonial'])) : ?>
+                                <button type="button" class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-primary-600 transition-all text-sm" data-hs-overlay="#new-testimonial-canvas">
+                                    Оставить отзыв
+                                    <i class="fa-regular fa-message"></i>
+                                </button>
+                            <? endif; ?>
+                            <button type="button" class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm" data-hs-overlay="#new-record-canvas">
+                                Новая запись
+                                <i class='fa-solid fa-plus'></i>
+                            </button>
                         </div>
                     </div>
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                        <thead class="bg-gray-50 divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left border-l border-gray-200 dark:border-gray-700">
-                                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                        Филиал
-                                    </span>
+                                <th scope="col" class="px-6 py-3 text-left">
+                                    <div class="group flex justify-between items-center gap-x-2">
+                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                            Филиал
+                                        </span>
+                                        <div class="flex justify-center items-center w-5 h-5 border border-gray-200  text-gray-400 rounded">
+                                            <i class="fa-solid fa-filter fa-xs"></i>
+                                        </div>
+                                    </div>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left">
-                                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                        Услуга
-                                    </span>
+                                    <div class="group flex justify-between items-center gap-x-2">
+                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                            Услуга
+                                        </span>
+                                        <div class="flex justify-center items-center w-5 h-5 border border-gray-200  text-gray-400 rounded">
+                                            <i class="fa-solid fa-filter fa-xs"></i>
+                                        </div>
+                                    </div>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left">
-                                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                        Врач
-                                    </span>
+                                    <div class="group flex justify-between items-center gap-x-2">
+                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                            Врач
+                                        </span>
+                                        <div class="flex justify-center items-center w-5 h-5 border border-gray-200  text-gray-400 rounded">
+                                            <i class="fa-solid fa-filter fa-xs"></i>
+                                        </div>
+                                    </div>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left">
-                                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                        Время
-                                    </span>
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left">
-                                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                        Дата
-                                    </span>
+                                    <div class="group flex justify-between items-center gap-x-2">
+                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                            Дата и время приема
+                                        </span>
+                                        <div class="flex justify-center items-center w-5 h-5 border border-gray-200  text-gray-400 rounded">
+                                            <i class="fa-solid fa-filter fa-xs"></i>
+                                        </div>
+                                    </div>
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <tbody class="divide-y divide-gray-200">
                             <? while ($booking = mysqli_fetch_assoc($bookings_result)) : ?>
-                                <tr>
-                                    <td class="h-px w-auto whitespace-nowrap">
-                                        <div class="px-6 py-2 flex items-center gap-x-3">
-                                            <span class="text-sm w-4 text-gray-600 dark:text-gray-400"><?= $booking['id'] ?></span>
-                                            <span class="text-sm text-gray-600 decoration-2"><?= $booking['filial_title'] . ' | ул. ' . $booking['street_name'] ?></span>
+                                <tr class="bg-white">
+                                    <td class="h-px w-px whitespace-nowrap">
+                                        <div class="px-6 py-2">
+                                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-gray-100 text-gray-800">
+                                                <?= $booking['filial_title'] ?>
+                                            </span>
+                                            <p class="text-sm text-gray-600">
+                                                <?= 'ул. ' . $booking['street_name'] . ', д. ' . $booking['house_number'] ?>
+                                            </p>
                                         </div>
                                     </td>
-                                    <td class="h-px w-auto whitespace-nowrap">
+                                    <td class="h-px w-72 min-w-[18rem]">
                                         <div class="px-6 py-2">
-                                            <span class="font-semibold text-sm text-gray-800 dark:text-gray-200"><?= $booking['service_title'] ?></span>
-                                        </div>
-                                    </td>
-                                    <td class="h-px w-auto whitespace-nowrap">
-                                        <div class="px-6 py-2">
-                                            <span class="text-sm text-gray-800 dark:text-gray-200"><?= $booking['staff_surname'] . ' ' . mb_substr($booking['staff_name'], 0, 1) . '. ' . mb_substr($booking['staff_patronymic'], 0, 1) . '.' ?></span>
-                                        </div>
-                                    </td>
-                                    <td class="h-px w-auto whitespace-nowrap">
-                                        <div class="px-6 py-2">
-                                            <span class="text-sm text-gray-800 dark:text-gray-200">
-                                                <? echo date('H:i', strtotime($booking['time'])) ?>
+                                            <span class="font-semibold text-sm text-gray-600">
+                                                <?= $booking['service_title'] ?>
                                             </span>
                                         </div>
                                     </td>
-                                    <td class="h-px w-auto whitespace-nowrap">
+                                    <td class="h-px w-px whitespace-nowrap">
                                         <div class="px-6 py-2">
-                                            <span class="text-sm text-gray-800 dark:text-gray-200">
-                                                <?php
+                                            <p class="text-sm text-gray-600">
+                                                <?= $booking['staff_surname'] . ' ' . mb_substr($booking['staff_name'], 0, 1) . '. ' . mb_substr($booking['staff_patronymic'], 0, 1) . '.' ?>
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td class="h-px w-px whitespace-nowrap">
+                                        <div class="px-6 py-2">
+                                            <p class="text-sm text-gray-600">
+                                                <?
                                                 setlocale(LC_TIME, 'ru_RU.utf8');
-                                                $date = strftime("%d %h %Y", strtotime($booking['date']));
-                                                echo $date;
+                                                echo date('H:i', strtotime($booking['time'])) . ' / ' . strftime("%d %h %Y", strtotime($booking['date']));
                                                 ?>
-                                            </span>
+                                            </p>
                                         </div>
                                     </td>
                                 </tr>
                             <? endwhile; ?>
                         </tbody>
                     </table>
+                    <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200">
+                        <p class="text-sm text-gray-600">
+                            Записей <span class="font-semibold text-gray-800">
+                                <?= $total ?> <?= $limit_num ?>
+                            </span> | Страница
+                            <span class="font-semibold text-gray-800">
+                                <?= $page ?>
+                            </span> из <span class="font-semibold text-gray-800">
+                                <?= $pages ?>
+                            </span>
+                        </p>
+                        <div class="inline-flex gap-x-2">
+                            <? if ($page != 1) : ?>
+                                <?php $_GET['page'] = $page - 1; ?>
+                                <a href="<?= $uri ?>?<?= http_build_query($_GET) ?>" class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm">
+                                    <i class="fa-solid fa-chevron-left fa-xs"></i>
+                                    Предыдущая
+                                </a>
+                            <? endif; ?>
+                            <? if ($page < $pages) : ?>
+                                <?php $_GET['page'] = $page + 1; ?>
+                                <a href="<?= $uri ?>?<?= http_build_query($_GET) ?>" class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm">
+                                    Следующая
+                                    <i class="fa-solid fa-chevron-right fa-xs"></i>
+                                </a>
+                                <?php $_GET['page'] = $page; ?>
+                            <? endif; ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

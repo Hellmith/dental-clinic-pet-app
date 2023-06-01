@@ -9,7 +9,12 @@ if (!empty($_SESSION['USER']) || !empty($_SESSION['STAFF'])) {
 	}
 }
 
-$thisPage = renderTemplate('templates/site/index.template.php', ['brand' => $brand]);
+$conn = mysqli_connect('127.0.0.1', 'root', '', 'dentistry') or die('Error: ' . mysqli_error($conn));
+
+$query = "SELECT * FROM `patients` WHERE `testimonial` <> '' LIMIT 3";
+$patients_result = mysqli_query($conn, $query);
+
+$thisPage = renderTemplate('templates/site/index.template.php', ['brand' => $brand, 'patients_result' => $patients_result]);
 $thisLayout = renderTemplate('templates/layouts/landing.template.php', ['brand' => $brand, 'content' => $thisPage]);
 
 print $thisLayout;
