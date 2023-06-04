@@ -188,11 +188,6 @@ if (isset($_POST['add_service']) && (empty($_SESSION['msg']['button_value']) || 
                         Профиль
                     </a>
                 </div>
-                <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last-pr-0">
-                    <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:hover:text-gray-500" href="/dashboard/analyz">
-                        Статистика
-                    </a>
-                </div>
                 <?php if ($_SESSION['USER']) { ?>
                     <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
                         <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:hover:text-gray-500" href="/dashboard/bookings">
@@ -211,6 +206,11 @@ if (isset($_POST['add_service']) && (empty($_SESSION['msg']['button_value']) || 
                         </a>
                     </div>
                 <?php } else { ?>
+                    <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last-pr-0">
+                        <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:hover:text-gray-500" href="/dashboard/analyz">
+                            Статистика
+                        </a>
+                    </div>
                     <div class="hs-dropdown snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0 relative inline-flex [--trigger:hover]">
                         <button id="hs-dropdown-hover-event" type="button" class="hs-dropdown-toggle py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none">
                             Филиал
