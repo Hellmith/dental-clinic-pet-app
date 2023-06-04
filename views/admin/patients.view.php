@@ -27,7 +27,7 @@ $filter
 ORDER BY `patient_surname` ASC, `patient_name` ASC $limit";
 $users = mysqli_query($conn, $query);
 
-$thisPage = renderTemplate('../../templates/site/admin/patients.template.php', ['total' => $total, 'result' => $users]);
+$thisPage = renderTemplate('../../templates/site/admin/patients.template.php', ['total' => $total, 'result' => $users, 'page' => $page, 'pages' => $pages]);
 $thisLayout = renderTemplate('../../templates/layouts/app.template.php', ['brand' => $brand, 'email' => $email, 'content' => $thisPage]);
 
 print $thisLayout;

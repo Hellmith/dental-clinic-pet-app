@@ -13,7 +13,7 @@ $query =
 $services_categories = mysqli_fetch_all(mysqli_query($conn, $query), MYSQLI_ASSOC);
 
 // Пагинатор (разбиение данных на страницы)
-$default_limit = 10; // Какой лимит если не указан в полях на странице
+$default_limit = 8; // Какой лимит если не указан в полях на странице
 $limit_num = !empty($_GET['limit']) && $_GET['limit'] >= 1 ? $_GET['limit'] : $default_limit; // Проверка указан-ли лимит на странице
 $total = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM `services` AS se $filter"))[0]; // Всего записей
 $pages = ceil($total / $limit_num); // Всего страниц
@@ -44,7 +44,7 @@ ORDER BY `service_title` ASC $limit";
 $services_result = mysqli_query($conn, $query);
 
 
-$thisPage = renderTemplate('../../templates/site/admin/services.template.php', ['total' => $total, 'result' => $services_result, 'services_categories' => $services_categories]);
+$thisPage = renderTemplate('../../templates/site/admin/services.template.php', ['total' => $total, 'result' => $services_result, 'categories' => $services_categories, 'page' => $page, 'pages' => $pages]);
 $thisLayout = renderTemplate('../../templates/layouts/app.template.php', ['brand' => $brand, 'email' => $email, 'content' => $thisPage, 'services_categories' => $services_categories]);
 
 print $thisLayout;

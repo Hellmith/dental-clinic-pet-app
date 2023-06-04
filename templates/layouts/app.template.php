@@ -151,7 +151,7 @@ if (isset($_POST['add_service']) && (empty($_SESSION['msg']['button_value']) || 
     <header class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white border-b text-sm py-2.5 sm:py-4">
         <nav class="container flex basis-full justify-between items-center w-full mx-auto px-4 sm:px-6 lg:px-8" aria-label="Global">
             <div class="mr-5 md:mr-8">
-                <a class="flex-none text-xl font-semibold" href="#" aria-label="<?= $brand ?>">
+                <a class="flex-none text-xl font-semibold" href="/dashboard" aria-label="<?= $brand ?>">
                     <i class='fa-solid fa-tooth fa-xl text-primary-600 dark:text-primary-500'></i>
                     <?= $brand ?>
                     <span class="inline bg-gray-100 text-xs text-gray-500 font-semibold rounded-full py-1 px-2 dark:bg-gray-700">
@@ -188,6 +188,11 @@ if (isset($_POST['add_service']) && (empty($_SESSION['msg']['button_value']) || 
                         Профиль
                     </a>
                 </div>
+                <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last-pr-0">
+                    <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:hover:text-gray-500" href="/dashboard/analyz">
+                        Статистика
+                    </a>
+                </div>
                 <?php if ($_SESSION['USER']) { ?>
                     <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
                         <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:hover:text-gray-500" href="/dashboard/bookings">
@@ -206,20 +211,25 @@ if (isset($_POST['add_service']) && (empty($_SESSION['msg']['button_value']) || 
                         </a>
                     </div>
                 <?php } else { ?>
-                    <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
-                        <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:hover:text-gray-500" href="/dashboard/records">
-                            Записи
-                        </a>
-                    </div>
-                    <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
-                        <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:hover:text-gray-500" href="/dashboard/categories">
-                            Категории
-                        </a>
-                    </div>
-                    <div class="snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0">
-                        <a class="inline-flex items-center gap-x-2 hover:text-gray-500 dark:hover:text-gray-500" href="/dashboard/services">
-                            Услуги
-                        </a>
+                    <div class="hs-dropdown snap-center shrink-0 pr-5 sm:pr-8 sm:last:pr-0 relative inline-flex [--trigger:hover]">
+                        <button id="hs-dropdown-hover-event" type="button" class="hs-dropdown-toggle py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none">
+                            Филиал
+                            <svg class="hs-dropdown-open:rotate-180 w-2.5 h-2.5 text-gray-600" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 5L8.16086 10.6869C8.35239 10.8637 8.64761 10.8637 8.83914 10.6869L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </button>
+
+                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-[15rem] bg-white shadow-md rounded-lg p-2 mt-2 dark:border dark:divide-gray-700 after:h-4 after:absolute after:-bottom-4 after:left-0 after:w-full before:h-4 before:absolute before:-top-4 before:left-0 before:w-full" aria-labelledby="hs-dropdown-hover-event">
+                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="/dashboard/filial/records">
+                                Записи
+                            </a>
+                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="/dashboard/filial/categories">
+                                Категории услуг
+                            </a>
+                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="/dashboard/filial/services">
+                                Услуги и цены
+                            </a>
+                        </div>
                     </div>
                     <div class="hs-dropdown relative inline-flex [--trigger:hover]">
                         <button id="hs-dropdown-hover-event" type="button" class="hs-dropdown-toggle py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none">
@@ -290,7 +300,7 @@ if (isset($_POST['add_service']) && (empty($_SESSION['msg']['button_value']) || 
             </button>
         </div>
         <div class="p-4 h-full">
-            <? if (!isset($_SESSION['USER']['city_id'])) : ?>
+            <? if (!isset($_SESSION['USER']['city_id']) && !isset($_SESSION['STAFF'])) : ?>
                 <div class="bg-orange-50 mb-2 border border-orange-200 text-sm text-orange-600 rounded-md p-4" role="alert">
                     <span class="font-bold">Важно:</span> cначала выберите город!
                 </div>

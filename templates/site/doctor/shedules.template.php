@@ -13,7 +13,7 @@
                             Список записей
                         </h2>
                         <div class="inline-flex gap-x-2">
-                            <form action="" method="GET" id="filter-form">
+                            <form action="" method="GET" id="sort-form">
                                 <label for="date_filter" class="sr-only">Дата</label>
                                 <div class="flex rounded-md shadow-sm">
                                     <input type="date" id="date_filter" name="date_filter" class="py-2 px-3 block w-full border-gray-200 shadow-sm rounded-l-md text-sm focus:z-10 focus:border-primary-500 focus:ring-primary-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" value="<?= !empty($_GET['date_filter']) ? $_GET['date_filter'] : '' ?>">
@@ -33,7 +33,7 @@
                                             Пациент
                                         </span>
                                         <div class="flex justify-center items-center w-5 h-5 border border-gray-200  text-gray-400 rounded">
-                                            <i class="fa-solid fa-filter fa-xs"></i>
+                                            <i class="fa-solid fa-sort fa-xs"></i>
                                         </div>
                                     </div>
                                 </th>
@@ -43,7 +43,7 @@
                                             Услуга
                                         </span>
                                         <div class="flex justify-center items-center w-5 h-5 border border-gray-200  text-gray-400 rounded">
-                                            <i class="fa-solid fa-filter fa-xs"></i>
+                                            <i class="fa-solid fa-sort fa-xs"></i>
                                         </div>
                                     </div>
                                 </th>
@@ -53,7 +53,7 @@
                                             Телефон
                                         </span>
                                         <div class="flex justify-center items-center w-5 h-5 border border-gray-200  text-gray-400 rounded">
-                                            <i class="fa-solid fa-filter fa-xs"></i>
+                                            <i class="fa-solid fa-sort fa-xs"></i>
                                         </div>
                                     </div>
                                 </th>
@@ -63,7 +63,7 @@
                                             Дата и время приема
                                         </span>
                                         <div class="flex justify-center items-center w-5 h-5 border border-gray-200  text-gray-400 rounded">
-                                            <i class="fa-solid fa-filter fa-xs"></i>
+                                            <i class="fa-solid fa-sort fa-xs"></i>
                                         </div>
                                     </div>
                                 </th>

@@ -38,7 +38,7 @@
                                             Филиал
                                         </span>
                                         <div class="flex justify-center items-center w-5 h-5 border border-gray-200  text-gray-400 rounded">
-                                            <i class="fa-solid fa-filter fa-xs"></i>
+                                            <i class="fa-solid fa-sort fa-xs"></i>
                                         </div>
                                     </div>
                                 </th>
@@ -48,7 +48,7 @@
                                             Услуга
                                         </span>
                                         <div class="flex justify-center items-center w-5 h-5 border border-gray-200  text-gray-400 rounded">
-                                            <i class="fa-solid fa-filter fa-xs"></i>
+                                            <i class="fa-solid fa-sort fa-xs"></i>
                                         </div>
                                     </div>
                                 </th>
@@ -58,7 +58,7 @@
                                             Врач
                                         </span>
                                         <div class="flex justify-center items-center w-5 h-5 border border-gray-200  text-gray-400 rounded">
-                                            <i class="fa-solid fa-filter fa-xs"></i>
+                                            <i class="fa-solid fa-sort fa-xs"></i>
                                         </div>
                                     </div>
                                 </th>
@@ -68,7 +68,7 @@
                                             Дата и время приема
                                         </span>
                                         <div class="flex justify-center items-center w-5 h-5 border border-gray-200  text-gray-400 rounded">
-                                            <i class="fa-solid fa-filter fa-xs"></i>
+                                            <i class="fa-solid fa-sort fa-xs"></i>
                                         </div>
                                     </div>
                                 </th>

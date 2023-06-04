@@ -29,7 +29,7 @@ $filter
 ORDER BY `staff_surname` ASC, `staff_name` ASC $limit";
 $staffs_res = mysqli_query($conn, $query);
 
-$thisPage = renderTemplate('../../templates/site/admin/staff.template.php', ['total' => $total, 'result' => $staffs_res]);
+$thisPage = renderTemplate('../../templates/site/admin/staff.template.php', ['total' => $total, 'result' => $staffs_res, 'page' => $page, 'pages' => $pages]);
 $thisLayout = renderTemplate('../../templates/layouts/app.template.php', ['brand' => $brand, 'email' => $email, 'content' => $thisPage]);
 
 print $thisLayout;
