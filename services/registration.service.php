@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$password1 = $_POST['password1'];
 	$password2 = $_POST['password2'];
 
-	$result = $userTools->register($name, $surname, $patronymic, $phone, $email, $password1, $passwor2);
+	$result = $userTools->register($name, $surname, $patronymic, $phone, $email, $password1, $password2);
 
 	if ($result === 'Успешная регистрация!') {
 		echo 'success';

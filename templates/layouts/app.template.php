@@ -39,52 +39,56 @@ if (isset($_POST['testimonial'])) {
     exit();
 }
 
-
 if (isset($_POST['registration_form'])) {
     $message = '';
 
+    // Extracting common variables outside of if/else blocks
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
     if (!empty($_POST['role']) && $_POST['role'] == 1) {
-        // Проверка на пользователя
-        $query = "SELECT * FROM patients WHERE email = '$_POST[email]'";
+        // Check for patient
+        $query = "SELECT * FROM patients WHERE email = '$email' OR phone = '$phone'";
         $res = mysqli_query($conn, $query);
-        $userRow1 = mysqli_fetch_array($res, MYSQLI_ASSOC);
-        if ($userRow1)
-            $message .= "Эта почта уже используется <br /> ";
-        $query = "SELECT * FROM patients WHERE phone = '$_POST[phone]'";
-        $res = mysqli_query($conn, $query);
-        $userRow2 = mysqli_fetch_array($res, MYSQLI_ASSOC);
-        if ($userRow2)
-            $message .= "Этот номер телефона уже используется <br /> ";
-        if (!$userRow1 && !$userRow2) {
-            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            $query = "INSERT INTO
-		`patients` (`patient_surname`, `patient_name`, `patient_patronymic`, `phone`, `email`, `password`)
-		VALUES ('$_POST[name]', '$_POST[surname]', '$_POST[patronymic]', '$_POST[phone]', '$_POST[email]', '$password')";
+
+        // Combine multiple checks into one if statement
+        if ($res && mysqli_num_rows($res) > 0) {
+            $row = mysqli_fetch_assoc($res);
+            if ($row['email'] == $email) {
+                $message .= "This email has already been registered. <br />";
+            }
+            if ($row['phone'] == $phone) {
+                $message .= "This phone number has already been registered. <br />";
+            }
+        } else {
+            $query = "INSERT INTO `patients` (`patient_surname`, `patient_name`, `patient_patronymic`, `phone`, `email`, `password`)
+            VALUES ('$_POST[name]', '$_POST[surname]', '$_POST[patronymic]', '$phone', '$email', '$password')";
             $res = mysqli_query($conn, $query);
             if ($res) {
-                $message_box = "Пользователь $_POST[surname] " . mb_substr($_POST['name'], 0, 1) . '.' . mb_substr($_POST['patronymic'], 0, 1) . ".  успешно зарегистрирован";
+                $message_box = "Patient $_POST[surname] " . mb_substr($_POST['name'], 0, 1) . '.' . mb_substr($_POST['patronymic'], 0, 1) . ".  has been successfully registered.";
             }
         }
     } else {
-        // Проверка на работника
-        $query = "SELECT * FROM staffs WHERE email = '$_POST[email]'";
+        // Check for staff
+        $query = "SELECT * FROM staffs WHERE email = '$email' OR phone = '$phone'";
         $res = mysqli_query($conn, $query);
-        $userRow1 = mysqli_fetch_array($res, MYSQLI_ASSOC);
-        if ($userRow1)
-            $message .= "Эта почта уже используется <br /> ";
-        $query = "SELECT * FROM staffs WHERE phone = '$_POST[phone]'";
-        $res = mysqli_query($conn, $query);
-        $userRow2 = mysqli_fetch_array($res, MYSQLI_ASSOC);
-        if ($userRow2)
-            $message .= "Этот номер телефона уже используется <br /> ";
-        if (!$userRow1 && !$userRow2) {
-            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            $query = "INSERT INTO
-		`staffs` (`staff_surname`, `staff_name`, `staff_patronymic`, `phone`, `email`, `password`, `filial_id`)
-		VALUES ('$_POST[surname]', '$_POST[name]', '$_POST[patronymic]', '$_POST[phone]', '$_POST[email]', '$password', '$filial_data[id]')";
+
+        // Combine multiple checks into one if statement
+        if ($res && mysqli_num_rows($res) > 0) {
+            $row = mysqli_fetch_assoc($res);
+            if ($row['email'] == $email) {
+                $message .= "This email has already been registered. <br />";
+            }
+            if ($row['phone'] == $phone) {
+                $message .= "This phone number has already been registered. <br />";
+            }
+        } else {
+            $query = "INSERT INTO `staffs` (`staff_surname`, `staff_name`, `staff_patronymic`, `phone`, `email`, `password`, `filial_id`)
+            VALUES ('$_POST[surname]', '$_POST[name]', '$_POST[patronymic]', '$phone', '$email', '$password', '$filial_data[id]')";
             $res = mysqli_query($conn, $query);
             if ($res) {
-                $message_box = "Сотрудник $_POST[surname] " . mb_substr($_POST['name'], 0, 1) . '.' . mb_substr($_POST['patronymic'], 0, 1) . ".  успешно зарегистрирован";
+                $message_box = "Staff $_POST[surname] " . mb_substr($_POST['name'], 0, 1) . '.' . mb_substr($_POST['patronymic'], 0, 1) . ". has been successfully registered.";
             }
         }
     }
@@ -441,7 +445,7 @@ if (isset($_POST['add_service']) && (empty($_SESSION['msg']['button_value']) || 
             </button>
         </div>
         <div class="p-4 h-full">
-            <form action='' form='POST' class='flex flex-col h-[calc(100vh_-_100px)] justify-between' id='registration_form'>
+            <form action='' method='POST' class='flex flex-col h-[calc(100vh_-_100px)] justify-between'>
                 <div class="flex flex-col">
                     <div class="mb-2">
                         <label for="surname" class="block text-sm font-medium">Фамилия</label>
@@ -480,7 +484,7 @@ if (isset($_POST['add_service']) && (empty($_SESSION['msg']['button_value']) || 
                         </div>
                     </div>
                 </div>
-                <button class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" name="registration_form" type="submit">
+                <button class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm" name="registration_form" type="submit">
                     Зарегистрировать
                 </button>
             </form>

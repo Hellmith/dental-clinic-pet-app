@@ -177,14 +177,68 @@
                 <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
                     <div class="flex items-center gap-x-4 mb-3">
                         <div class="flex-shrink-0">
-                            <h3 class="block text-lg font-semibold text-gray-800 ">Знакомство
-                                и консультация</h3>
+                            <h3 class="block text-lg font-semibold text-gray-800 ">Верхние брекеты</h3>
                         </div>
                     </div>
-                    <p class="text-gray-600  mb-3">Немного текста, Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,</p>
+                    <p class="text-gray-600 flex items-center justify-between ">
+                        <span>1,5-2 часа</span>
+                        <span class='font-medium text-primary-600'>8000 руб.</span>
+                    </p>
+                </div>
+                <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <div class="flex items-center gap-x-4 mb-3">
+                        <div class="flex-shrink-0">
+                            <h3 class="block text-lg font-semibold text-gray-800 ">Вставка керамических имплатов</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 flex items-center justify-between ">
+                        <span>от 1 до 2 часов</span>
+                        <span class='font-medium text-primary-600'>12000 руб.</span>
+                    </p>
+                </div>
+                <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <div class="flex items-center gap-x-4 mb-3">
+                        <div class="flex-shrink-0">
+                            <h3 class="block text-lg font-semibold text-gray-800 ">Запись на плановый осмотр</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 flex items-center justify-between ">
+                        <span>5-10 минут</span>
+                        <span class='font-medium text-primary-600'>500 руб.</span>
+                    </p>
+                </div>
+                <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <div class="flex items-center gap-x-4 mb-3">
+                        <div class="flex-shrink-0">
+                            <h3 class="block text-lg font-semibold text-gray-800 ">Нижние брекеты</h3>
+                        </div>
+                    </div>
                     <p class="text-gray-600 flex items-center justify-between ">
                         <span>10 минут</span>
-                        <span class='font-medium text-primary-600'>3000 руб.</span>
+                        <span class='font-medium text-primary-600'>7000 руб.</span>
+                    </p>
+                </div>
+                <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <div class="flex items-center gap-x-4 mb-3">
+                        <div class="flex-shrink-0">
+                            <h3 class="block text-lg font-semibold text-gray-800 ">Общий осмотр</h3>
+                        </div>
+                    </div>
+                 
+                    <p class="text-gray-600 flex items-center justify-between ">
+                        <span>30-60 минут</span>
+                        <span class='font-medium text-primary-600'>1500 руб.</span>
+                    </p>
+                </div>
+                <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
+                    <div class="flex items-center gap-x-4 mb-3">
+                        <div class="flex-shrink-0">
+                            <h3 class="block text-lg font-semibold text-gray-800 ">Консультация прикуса</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 flex items-center justify-between ">
+                        <span>30 минут</span>
+                        <span class='font-medium text-primary-600'>1000 руб.</span>
                     </p>
                 </div>
                 <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
@@ -194,7 +248,6 @@
                                 и консультация</h3>
                         </div>
                     </div>
-                    <p class="text-gray-600  mb-3">Немного текста, Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,</p>
                     <p class="text-gray-600 flex items-center justify-between ">
                         <span>10 минут</span>
                         <span class='font-medium text-primary-600'>3000 руб.</span>
@@ -203,92 +256,23 @@
                 <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
                     <div class="flex items-center gap-x-4 mb-3">
                         <div class="flex-shrink-0">
-                            <h3 class="block text-lg font-semibold text-gray-800 ">Знакомство
-                                и консультация</h3>
+                            <h3 class="block text-lg font-semibold text-gray-800 ">Регистрация и первый осмотр</h3>
                         </div>
                     </div>
-                    <p class="text-gray-600  mb-3">Немного текста, Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,</p>
                     <p class="text-gray-600 flex items-center justify-between ">
-                        <span>10 минут</span>
-                        <span class='font-medium text-primary-600'>3000 руб.</span>
+                        <span>10-30 минут</span>
+                        <span class='font-medium text-primary-600'>800 руб.</span>
                     </p>
                 </div>
                 <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
                     <div class="flex items-center gap-x-4 mb-3">
                         <div class="flex-shrink-0">
-                            <h3 class="block text-lg font-semibold text-gray-800 ">Знакомство
-                                и консультация</h3>
+                            <h3 class="block text-lg font-semibold text-gray-800 ">Реставрация имплатнов</h3>
                         </div>
                     </div>
-                    <p class="text-gray-600  mb-3">Немного текста, Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,</p>
                     <p class="text-gray-600 flex items-center justify-between ">
-                        <span>10 минут</span>
-                        <span class='font-medium text-primary-600'>3000 руб.</span>
-                    </p>
-                </div>
-                <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div class="flex-shrink-0">
-                            <h3 class="block text-lg font-semibold text-gray-800 ">Знакомство
-                                и консультация</h3>
-                        </div>
-                    </div>
-                    <p class="text-gray-600  mb-3">Немного текста, Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,</p>
-                    <p class="text-gray-600 flex items-center justify-between ">
-                        <span>10 минут</span>
-                        <span class='font-medium text-primary-600'>3000 руб.</span>
-                    </p>
-                </div>
-                <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div class="flex-shrink-0">
-                            <h3 class="block text-lg font-semibold text-gray-800 ">Знакомство
-                                и консультация</h3>
-                        </div>
-                    </div>
-                    <p class="text-gray-600  mb-3">Немного текста, Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,</p>
-                    <p class="text-gray-600 flex items-center justify-between ">
-                        <span>10 минут</span>
-                        <span class='font-medium text-primary-600'>3000 руб.</span>
-                    </p>
-                </div>
-                <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div class="flex-shrink-0">
-                            <h3 class="block text-lg font-semibold text-gray-800 ">Знакомство
-                                и консультация</h3>
-                        </div>
-                    </div>
-                    <p class="text-gray-600  mb-3">Немного текста, Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,</p>
-                    <p class="text-gray-600 flex items-center justify-between ">
-                        <span>10 минут</span>
-                        <span class='font-medium text-primary-600'>3000 руб.</span>
-                    </p>
-                </div>
-                <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div class="flex-shrink-0">
-                            <h3 class="block text-lg font-semibold text-gray-800 ">Знакомство
-                                и консультация</h3>
-                        </div>
-                    </div>
-                    <p class="text-gray-600  mb-3">Немного текста, Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,</p>
-                    <p class="text-gray-600 flex items-center justify-between ">
-                        <span>10 минут</span>
-                        <span class='font-medium text-primary-600'>3000 руб.</span>
-                    </p>
-                </div>
-                <div class="w-full h-full bg-white shadow-lg rounded-lg p-5  hover:translate-x-1 hover:-translate-y-1 ease-in transition-all">
-                    <div class="flex items-center gap-x-4 mb-3">
-                        <div class="flex-shrink-0">
-                            <h3 class="block text-lg font-semibold text-gray-800 ">Знакомство
-                                и консультация</h3>
-                        </div>
-                    </div>
-                    <p class="text-gray-600  mb-3">Немного текста, Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,Немного текста,</p>
-                    <p class="text-gray-600 flex items-center justify-between ">
-                        <span>10 минут</span>
-                        <span class='font-medium text-primary-600'>3000 руб.</span>
+                        <span>1-2 часа </span>
+                        <span class='font-medium text-primary-600'>10000 руб.</span>
                     </p>
                 </div>
             </div>
