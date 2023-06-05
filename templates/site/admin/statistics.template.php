@@ -5,126 +5,126 @@
 </header>
 <section class="container mx-auto">
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
+        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
             <div class="text-center">
-                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-gray-200">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
                     <?= $total_users ?>
                 </h3>
             </div>
             <div class="inline-flex justify-center items-center">
                 <span class="w-2 h-2 inline-block bg-gray-500 rounded-full mr-2"></span>
-                <span class="text-xs font-semibold uppercase text-gray-600 dark:text-gray-400">
+                <span class="text-xs font-semibold uppercase text-gray-600">
                     Всего пользователей
                 </span>
             </div>
         </div>
 
-        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
+        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
             <div class="text-center">
-                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-gray-200">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
                     <?= $total_staffs ?>
                 </h3>
             </div>
             <div class="inline-flex justify-center items-center">
                 <span class="w-2 h-2 inline-block bg-gray-500 rounded-full mr-2"></span>
-                <span class="text-xs font-semibold uppercase text-gray-600 dark:text-gray-400">
+                <span class="text-xs font-semibold uppercase text-gray-600">
                     Работников
                 </span>
             </div>
         </div>
 
-        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
+        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
             <div class="text-center">
-                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-gray-200">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
                     <?= $total_patients ?>
                 </h3>
             </div>
             <div class="inline-flex justify-center items-center">
                 <span class="w-2 h-2 inline-block bg-gray-500 rounded-full mr-2"></span>
-                <span class="text-xs font-semibold uppercase text-gray-600 dark:text-gray-400">
+                <span class="text-xs font-semibold uppercase text-gray-600">
                     Пациентов
                 </span>
             </div>
         </div>
-        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
+        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
             <div class="text-center">
-                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-gray-200">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
                     <?= $total_records ?>
                 </h3>
             </div>
             <div class="inline-flex justify-center items-center">
                 <span class="w-2 h-2 inline-block bg-gray-500 rounded-full mr-2"></span>
-                <span class="text-xs font-semibold uppercase text-gray-600 dark:text-gray-400">
+                <span class="text-xs font-semibold uppercase text-gray-600">
                     Всего записей
                 </span>
             </div>
         </div>
 
-        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
+        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
             <div class="text-center">
-                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-gray-200">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
                     <?= $total_categories ?>
                 </h3>
             </div>
             <div class="inline-flex justify-center items-center">
                 <span class="w-2 h-2 inline-block bg-gray-500 rounded-full mr-2"></span>
-                <span class="text-xs font-semibold uppercase text-gray-600 dark:text-gray-400">
+                <span class="text-xs font-semibold uppercase text-gray-600">
                     Категорий
                 </span>
             </div>
         </div>
 
-        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
+        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
             <div class="text-center">
-                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-gray-200">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
                     <?= $total_services ?>
                 </h3>
             </div>
             <div class="inline-flex justify-center items-center">
                 <span class="w-2 h-2 inline-block bg-gray-500 rounded-full mr-2"></span>
-                <span class="text-xs font-semibold uppercase text-gray-600 dark:text-gray-400">
+                <span class="text-xs font-semibold uppercase text-gray-600">
                     Услуг
                 </span>
             </div>
         </div>
 
-        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
+        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
             <div class="text-center">
-                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-gray-200">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
                     <?= $total_filials ?>
                 </h3>
             </div>
             <div class="inline-flex justify-center items-center">
                 <span class="w-2 h-2 inline-block bg-gray-500 rounded-full mr-2"></span>
-                <span class="text-xs font-semibold uppercase text-gray-600 dark:text-gray-400">
+                <span class="text-xs font-semibold uppercase text-gray-600">
                     Всего филиалов
                 </span>
             </div>
         </div>
 
-        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
+        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
             <div class="text-center">
-                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-gray-200">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
                     <?= $total_regions ?>
                 </h3>
             </div>
             <div class="inline-flex justify-center items-center">
                 <span class="w-2 h-2 inline-block bg-gray-500 rounded-full mr-2"></span>
-                <span class="text-xs font-semibold uppercase text-gray-600 dark:text-gray-400">
+                <span class="text-xs font-semibold uppercase text-gray-600">
                     Регионов
                 </span>
             </div>
         </div>
 
-        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
+        <div class="flex flex-col justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
             <div class="text-center">
-                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-gray-200">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
                     <?= $total_cities ?>
                 </h3>
             </div>
             <div class="inline-flex justify-center items-center">
                 <span class="w-2 h-2 inline-block bg-gray-500 rounded-full mr-2"></span>
-                <span class="text-xs font-semibold uppercase text-gray-600 dark:text-gray-400">
+                <span class="text-xs font-semibold uppercase text-gray-600">
                     Городов
                 </span>
             </div>
@@ -143,15 +143,15 @@
             <? endwhile; ?>
         </div>
 
-        <div class="flex flex-col col-span-2 justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
+        <div class="flex flex-col col-span-2 justify-between gap-y-6 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
             <div class="text-center">
-                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800 dark:text-gray-200">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
                     <?= $sum ?>
                 </h3>
             </div>
             <div class="inline-flex justify-center items-center">
                 <span class="w-2 h-2 inline-block bg-gray-500 rounded-full mr-2"></span>
-                <span class="text-xs font-semibold uppercase text-gray-600 dark:text-gray-400">
+                <span class="text-xs font-semibold uppercase text-gray-600">
                     Выручка филиала за все время
                 </span>
             </div>

@@ -7,7 +7,7 @@
     <div class="flex flex-col">
         <div class="-m-1.5 overflow-x-auto">
             <div class="p-1.5 min-w-full inline-block align-middle">
-                <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hiddendark:border-gray-700">
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
                     <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
                         <h2 class="text-xl font-semibold text-gray-800">
                             Список пациентов
@@ -58,7 +58,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <tbody class="divide-y divide-gray-200">
                             <? while ($patient = mysqli_fetch_assoc($result)) : ?>
                                 <tr>
                                     <td class="h-px w-px whitespace-nowrap">

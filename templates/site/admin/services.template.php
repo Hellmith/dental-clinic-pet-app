@@ -46,13 +46,13 @@ if (isset($_POST['delete_service'])) {
     <div class="flex flex-col">
         <div class="-m-1.5 overflow-x-auto">
             <div class="p-1.5 min-w-full inline-block align-middle">
-                <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hiddendark:border-gray-700">
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
                     <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
                         <h2 class="text-xl font-semibold text-gray-800">
                             Список услуг
                         </h2>
                         <div class="inline-flex gap-x-2">
-                            <Button class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800" href type="button" data-hs-overlay="#new-service-canvas">
+                            <Button class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all text-sm" href type="button" data-hs-overlay="#new-service-canvas">
                                 Новая услуга
                                 <i class='fa-solid fa-plus'></i>
                             </Button>
@@ -112,7 +112,7 @@ if (isset($_POST['delete_service'])) {
                                         <td class="h-px w-auto whitespace-nowrap">
                                             <div class="px-6 py-2">
                                                 <span>
-                                                    <select class="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" name="service_category<?= $service['id'] ?>" id="service_category">
+                                                    <select class="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500" name="service_category<?= $service['id'] ?>" id="service_category">
                                                         <? foreach ($categories as $cat) : ?>
                                                             <option value="<?= $cat['id'] ?>" <?= $cat['id'] == $ser['category_id'] ? 'selected' : '' ?>>
                                                                 <?= $cat['category_title'] ?>
