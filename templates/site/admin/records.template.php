@@ -54,7 +54,7 @@
                                             </div>
                                         </div>
                                         <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t ">
-                                            <a href='/dashboard/records' class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-indigo-500 text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all text-sm">
+                                            <a href='/dashboard/filial/records' class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-indigo-500 text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all text-sm">
                                                 Сбросить
                                                 <i class="fa-solid fa-rotate-right"></i>
                                             </a>
